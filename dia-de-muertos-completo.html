@@ -1,0 +1,3384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página educativa interactiva sobre el Día de Muertos en México: historia, altar, catrinas, calaveritas de dulce y pan de muerto. Universidad Bancaria de México - LIAF1001.">
+  <title>Cómo se vive el día de muertos en México | Tradición y Cultura</title>
+  
+  <!-- Tipografías de Google Fonts: Fredoka (juvenil y amigable) y Outfit (moderna y limpia) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Hoja de Estilos -->
+  <style>
+/* ==========================================================================
+   ESTILOS GENERALES Y VARIABLES DE IDENTIDAD MEXICANA
+   Proyecto: Día de Muertos en México - UBM (LIAF1001)
+   ========================================================================== */
+
+:root {
+  /* Paleta Inspirada en el Día de Muertos y Arte Popular Mexicano */
+  --bg-primary: #ffffff;
+  --bg-soft: #fdfaf6;
+  --bg-surface: #ffffff;
+  
+  --cempasuchil: #ff7300;
+  --cempasuchil-glow: #ffa033;
+  --cempasuchil-deep: #e05e00;
+  
+  --rosa-mexicano: #e5007d;
+  --rosa-hover: #ff1493;
+  --rosa-soft: #ffe4f1;
+  
+  --amarillo-cempasuchil: #ffbe0b;
+  --azul-maya: #0096c7;
+  --azul-turquesa: #06d6a0;
+  --morado-mictlan: #6b2d5c;
+  --morado-velacion: #48113c;
+  
+  --cafe-tierra: #4e342e;
+  --cafe-barro: #795548;
+  --cafe-claro: #d7ccc8;
+  
+  --text-primary: #2d221c;
+  --text-muted: #5e4c42;
+  --text-light: #8d7b70;
+  --border-color: #f0e6dc;
+  
+  --shadow-sm: 0 4px 12px rgba(78, 52, 46, 0.06);
+  --shadow-md: 0 10px 24px rgba(78, 52, 46, 0.1);
+  --shadow-lg: 0 18px 40px rgba(78, 52, 46, 0.15);
+  --shadow-cempasuchil: 0 8px 24px rgba(255, 115, 0, 0.25);
+  --shadow-rosa: 0 8px 24px rgba(229, 0, 125, 0.25);
+
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --radius-full: 9999px;
+
+  --transition-smooth: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Reseteo y Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Outfit', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-soft);
+  color: var(--text-primary);
+  line-height: 1.65;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   GUIRNALDA DE PAPEL PICADO SUPERIOR (DECORATIVO CULTURAL)
+   ========================================================================== */
+.papel-picado-banner {
+  display: flex;
+  justify-content: space-around;
+  background: transparent;
+  overflow: hidden;
+  height: 22px;
+  position: relative;
+  z-index: 1001;
+  pointer-events: none;
+}
+
+.papel-item {
+  width: 32px;
+  height: 20px;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+  animation: banderola-swing 3s ease-in-out infinite alternate;
+}
+
+.papel-item:nth-child(1) { background-color: var(--rosa-mexicano); animation-delay: 0.1s; }
+.papel-item:nth-child(2) { background-color: var(--amarillo-cempasuchil); animation-delay: 0.3s; }
+.papel-item:nth-child(3) { background-color: var(--cempasuchil); animation-delay: 0.5s; }
+.papel-item:nth-child(4) { background-color: var(--azul-maya); animation-delay: 0.2s; }
+.papel-item:nth-child(5) { background-color: var(--morado-mictlan); animation-delay: 0.4s; }
+.papel-item:nth-child(6) { background-color: var(--azul-turquesa); animation-delay: 0.6s; }
+.papel-item:nth-child(7) { background-color: var(--rosa-mexicano); animation-delay: 0.15s; }
+.papel-item:nth-child(8) { background-color: var(--cempasuchil); animation-delay: 0.35s; }
+.papel-item:nth-child(9) { background-color: var(--amarillo-cempasuchil); animation-delay: 0.55s; }
+.papel-item:nth-child(10) { background-color: var(--azul-maya); animation-delay: 0.25s; }
+
+@keyframes banderola-swing {
+  0% { transform: rotate(-3deg) translateY(0); }
+  100% { transform: rotate(3deg) translateY(2px); }
+}
+
+/* ==========================================================================
+   BARRA DE NAVEGACIÓN SUPERIOR (NAVBAR)
+   ========================================================================== */
+.main-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 2px solid #fae8d8;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(78, 52, 46, 0.05);
+  transition: var(--transition-smooth);
+}
+
+.nav-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* LOGO DE CRÁNEO ANIMADO DE CATRINA */
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.logo-wrapper {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff3e6 0%, #ffe0cc 100%);
+  border: 2px solid var(--cempasuchil);
+  box-shadow: 0 4px 15px rgba(255, 115, 0, 0.2);
+  transition: var(--transition-smooth);
+}
+
+.logo-wrapper:hover {
+  transform: scale(1.08) rotate(4deg);
+  border-color: var(--rosa-mexicano);
+  box-shadow: 0 6px 20px rgba(229, 0, 125, 0.3);
+}
+
+.skull-catrina-svg {
+  width: 44px;
+  height: 44px;
+  animation: floatSkull 3.2s ease-in-out infinite alternate;
+}
+
+/* Animaciones del Cráneo Animado */
+@keyframes floatSkull {
+  0% { transform: translateY(0px) rotate(-1.5deg); }
+  50% { transform: translateY(-4px) rotate(1.5deg); }
+  100% { transform: translateY(0px) rotate(-1.5deg); }
+}
+
+.eye-flower {
+  transform-origin: center;
+  animation: spinPetals 16s linear infinite;
+}
+
+@keyframes spinPetals {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.crown-flower {
+  animation: crownPulse 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes crownPulse {
+  0% { transform: scale(0.96); }
+  100% { transform: scale(1.05); }
+}
+
+.catrina-blush {
+  animation: blushGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes blushGlow {
+  0% { opacity: 0.55; }
+  100% { opacity: 0.95; }
+}
+
+/* MENÚ DE ENLACES */
+.nav-links {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.15rem;
+  font-family: 'Fredoka', 'Outfit', sans-serif;
+  font-size: 1.02rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  white-space: nowrap;
+}
+
+.nav-btn:hover {
+  color: var(--rosa-mexicano);
+  background-color: var(--rosa-soft);
+  transform: translateY(-2px);
+}
+
+.nav-btn.active {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--cempasuchil) 0%, var(--rosa-mexicano) 100%);
+  border-color: transparent;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(229, 0, 125, 0.3);
+}
+
+.nav-btn .icon {
+  font-size: 1.1rem;
+}
+
+/* ==========================================================================
+   BARRA Y BOTÓN DE BÚSQUEDA INTERACTIVA EN NAVBAR
+   ========================================================================== */
+.search-container {
+  position: relative;
+  margin-left: 0.8rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1.8px solid #fae1cf;
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.35rem 0.25rem 0.85rem;
+  box-shadow: 0 2px 10px rgba(78, 52, 46, 0.05);
+  transition: var(--transition-smooth);
+}
+
+.search-bar:focus-within {
+  border-color: var(--cempasuchil);
+  box-shadow: 0 0 0 3px rgba(255, 115, 0, 0.2), 0 4px 14px rgba(78, 52, 46, 0.08);
+}
+
+.search-icon {
+  color: var(--cempasuchil);
+  flex-shrink: 0;
+  margin-right: 0.45rem;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  width: 170px;
+  transition: width 0.35s ease;
+}
+
+.search-input::placeholder {
+  color: var(--text-light);
+  font-size: 0.88rem;
+}
+
+.search-bar:focus-within .search-input {
+  width: 220px;
+}
+
+.search-clear-btn {
+  background: transparent;
+  border: none;
+  color: #a89485;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0 0.35rem;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.search-clear-btn:hover {
+  color: var(--rosa-mexicano);
+}
+
+.search-action-btn {
+  background: linear-gradient(135deg, var(--cempasuchil) 0%, var(--rosa-mexicano) 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.45rem 0.95rem;
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(229, 0, 125, 0.25);
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-left: 0.25rem;
+}
+
+.search-action-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 12px rgba(229, 0, 125, 0.35);
+}
+
+/* MENÚ DESPLEGABLE DE RESULTADOS */
+.search-results-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 360px;
+  max-height: 420px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1.5px solid #fae1cf;
+  border-radius: var(--radius-md);
+  box-shadow: 0 14px 35px rgba(44, 24, 16, 0.18);
+  z-index: 1200;
+  padding: 0.6rem 0;
+  display: none;
+  animation: dropdownSlide 0.25s ease forwards;
+}
+
+@keyframes dropdownSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.search-result-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  padding: 0.8rem 1.1rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  border-bottom: 1px solid #f9eee6;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover,
+.search-result-item.highlighted {
+  background-color: #fff6ee;
+}
+
+.result-icon {
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.result-info {
+  flex: 1;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.result-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--cafe-tierra);
+}
+
+.result-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: var(--radius-full);
+  background: var(--rosa-soft);
+  color: var(--rosa-mexicano);
+  text-transform: uppercase;
+}
+
+.result-snippet {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-top: 0.1rem;
+}
+
+.search-match-text {
+  background-color: #ffe699;
+  font-weight: 700;
+  color: #4e342e;
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.search-no-results {
+  padding: 1.5rem 1.2rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.search-no-results-icon {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Efecto de resplandor cuando se llega al elemento buscado */
+.search-target-highlight {
+  animation: targetGlow 2.5s ease-out;
+}
+
+@keyframes targetGlow {
+  0% {
+    outline: 4px solid var(--cempasuchil);
+    box-shadow: 0 0 25px rgba(255, 115, 0, 0.6);
+    transform: scale(1.02);
+  }
+  50% {
+    outline: 3px solid var(--rosa-mexicano);
+    box-shadow: 0 0 18px rgba(229, 0, 125, 0.4);
+  }
+  100% {
+    outline: transparent;
+    box-shadow: none;
+    transform: scale(1);
+  }
+}
+
+/* Botón Hamburguesa para Móvil */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1002;
+}
+
+.mobile-toggle span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--cafe-tierra);
+  border-radius: 4px;
+  transition: var(--transition-smooth);
+}
+
+.mobile-toggle.active span:nth-child(1) {
+  transform: translateY(10.5px) rotate(45deg);
+  background-color: var(--rosa-mexicano);
+}
+.mobile-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-toggle.active span:nth-child(3) {
+  transform: translateY(-10.5px) rotate(-45deg);
+  background-color: var(--rosa-mexicano);
+}
+
+/* ==========================================================================
+   CONTENEDOR DE PÁGINAS (VISTAS DINÁMICAS / SECCIONES)
+   ========================================================================== */
+.main-content {
+  flex: 1;
+  max-width: 1300px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* Cada sección actúa como una página */
+.page-view {
+  display: none;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.page-view.active-view {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  animation: pageFadeIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   COMPONENTES COMUNES Y TIPOGRAFÍA JUVENIL Y FESTIVA
+   ========================================================================== */
+.badge-festivo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, rgba(255, 115, 0, 0.12), rgba(229, 0, 125, 0.12));
+  color: var(--cempasuchil-deep);
+  border: 1px solid rgba(255, 115, 0, 0.3);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.4rem 1.1rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.section-hero {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+
+.main-title {
+  font-family: 'Fredoka', 'Cinzel Decorative', cursive, sans-serif;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 700;
+  line-height: 1.18;
+  color: var(--cafe-tierra);
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.5px;
+}
+
+.title-highlight {
+  background: linear-gradient(120deg, var(--cempasuchil) 0%, var(--rosa-mexicano) 60%, var(--amarillo-cempasuchil) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.section-subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  color: var(--text-muted);
+  max-width: 820px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.cempasuchil-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1.8rem auto 2.5rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.cempasuchil-divider::before,
+.cempasuchil-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--cempasuchil));
+}
+
+.cempasuchil-divider::after {
+  background: linear-gradient(to left, transparent, var(--cempasuchil));
+}
+
+.flower-icon {
+  font-size: 1.5rem;
+  color: var(--cempasuchil);
+  animation: rotateFloral 8s linear infinite;
+}
+
+@keyframes rotateFloral {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   PÁGINA 1: INICIO (INTRODUCCIÓN CULTURAL + CARRUSEL REAL)
+   ========================================================================== */
+.intro-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.cultural-card {
+  background: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 2.2rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.cultural-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 6px;
+  background: linear-gradient(90deg, var(--cempasuchil), var(--rosa-mexicano));
+}
+
+.cultural-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: #ffd8bf;
+}
+
+.card-icon-pill {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 1.3rem;
+  background: #fff5ed;
+  color: var(--cempasuchil);
+  border: 1px solid #ffe1cc;
+}
+
+.cultural-card.pink-accent .card-icon-pill {
+  background: var(--rosa-soft);
+  color: var(--rosa-mexicano);
+  border-color: #ffc9e4;
+}
+
+.cultural-card.yellow-accent .card-icon-pill {
+  background: #fffbe6;
+  color: #d49800;
+  border-color: #ffefa8;
+}
+
+.card-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.45rem;
+  color: var(--cafe-tierra);
+  margin-bottom: 0.9rem;
+  font-weight: 600;
+}
+
+.card-text {
+  color: var(--text-muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+
+/* CARRUSEL DE IMÁGENES REALES */
+.carousel-showcase {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  margin-bottom: 3.5rem;
+}
+
+.carousel-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.carousel-header h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.9rem;
+  color: var(--cafe-tierra);
+  margin-bottom: 0.4rem;
+}
+
+.carousel-header p {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  background-color: #1a120c;
+}
+
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease;
+  transform: scale(1.04);
+}
+
+.carousel-slide.active-slide {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slide-caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3rem 2.5rem 2rem;
+  background: linear-gradient(to top, rgba(20, 10, 5, 0.92) 0%, rgba(20, 10, 5, 0.6) 60%, transparent 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.slide-tag {
+  align-self: flex-start;
+  background: var(--cempasuchil);
+  color: #ffffff;
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.slide-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.slide-desc {
+  font-size: 0.98rem;
+  color: #f0e6dc;
+  max-width: 750px;
+  line-height: 1.5;
+}
+
+/* Controles del Carrusel */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--cafe-tierra);
+  font-size: 1.3rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+  transition: var(--transition-smooth);
+  z-index: 10;
+}
+
+.carousel-btn:hover {
+  background: #ffffff;
+  color: var(--rosa-mexicano);
+  transform: translateY(-50%) scale(1.12);
+}
+
+.carousel-btn.prev { left: 20px; }
+.carousel-btn.next { right: 20px; }
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 20px;
+  right: 25px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.indicator-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.indicator-dot.active {
+  width: 32px;
+  border-radius: 8px;
+  background: var(--cempasuchil);
+  border-color: var(--cempasuchil);
+}
+
+/* ==========================================================================
+   PÁGINA 2: ALTAR DE DÍA DE MUERTOS
+   ========================================================================== */
+.altar-levels-overview {
+  background: linear-gradient(135deg, #fff9f4 0%, #fff0e6 100%);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  border: 2px dashed #ffcaa6;
+  margin-bottom: 3.5rem;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.8rem;
+}
+
+.level-card {
+  background: #ffffff;
+  padding: 1.8rem;
+  border-radius: var(--radius-md);
+  border: 1px solid #fae1cf;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.level-number {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--cempasuchil);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.level-name {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.25rem;
+  color: var(--cafe-tierra);
+  margin-bottom: 0.6rem;
+}
+
+/* Elementos Indispensables del Altar (Cards dinámicas) */
+.elements-section-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 2rem;
+  color: var(--cafe-tierra);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.elements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.6rem;
+  margin-bottom: 4rem;
+}
+
+.element-item {
+  background: var(--bg-surface);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.element-item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: #ffcaa6;
+}
+
+.element-thumb-wrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.element-thumb-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.element-item:hover .element-thumb-wrapper img {
+  transform: scale(1.08);
+}
+
+.element-category {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cafe-tierra);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.element-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.element-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.28rem;
+  color: var(--cafe-tierra);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.element-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Sección de Colores en el Altar */
+.colors-significance {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2.8rem 2.2rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.color-pills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+
+.color-pill-card {
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
+  text-align: center;
+  transition: var(--transition-smooth);
+}
+
+.color-sample {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.color-pill-card h4 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  color: var(--cafe-tierra);
+}
+
+.color-pill-card p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   PÁGINA 3: CATRINAS Y CATRINES
+   ========================================================================== */
+.dual-portrait-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+.character-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.character-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.character-img-box {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+}
+
+.character-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.character-card:hover .character-img-box img {
+  transform: scale(1.05);
+}
+
+.character-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  background: rgba(44, 24, 16, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-full);
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.character-info {
+  padding: 2.2rem;
+  flex: 1;
+}
+
+.character-info h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.8rem;
+  color: var(--cafe-tierra);
+  margin-bottom: 0.8rem;
+}
+
+.feature-list {
+  list-style: none;
+  margin: 1.2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.feature-list li {
+  position: relative;
+  padding-left: 1.8rem;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.feature-list li::before {
+  content: '🌸';
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: 0.95rem;
+}
+
+.character-card.catrin-theme .feature-list li::before {
+  content: '🎩';
+}
+
+/* Origen histórico de Posada y Rivera */
+.history-origin-box {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.history-text h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.8rem;
+  color: var(--cafe-tierra);
+  margin-bottom: 1rem;
+}
+
+.makeup-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.8rem;
+}
+
+.makeup-step-card {
+  background: var(--bg-soft);
+  padding: 1.3rem;
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--rosa-mexicano);
+}
+
+.makeup-step-card h4 {
+  font-family: 'Fredoka', sans-serif;
+  color: var(--cafe-tierra);
+  margin-bottom: 0.4rem;
+  font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   PÁGINA 4: CALAVERAS DE AZÚCAR Y CHOCOLATE
+   ========================================================================== */
+.skulls-origin-banner {
+  background: linear-gradient(135deg, #fff3e6 0%, #ffebd9 100%);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  border: 1px solid #ffd2b3;
+  margin-bottom: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.skulls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.skull-variety-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-smooth);
+}
+
+.skull-variety-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.skull-img-wrapper {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+}
+
+.skull-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.skull-variety-card:hover .skull-img-wrapper img {
+  transform: scale(1.06);
+}
+
+.skull-content {
+  padding: 2rem;
+}
+
+.skull-content h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.55rem;
+  color: var(--cafe-tierra);
+  margin-bottom: 0.8rem;
+}
+
+.sweet-tradition-quote {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  text-align: center;
+  border: 2px dashed #ffcaa6;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sweet-tradition-quote blockquote {
+  font-size: 1.35rem;
+  font-style: italic;
+  color: var(--cafe-tierra);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* ==========================================================================
+   PÁGINA 5: PAN DE MUERTO
+   ========================================================================== */
+.pan-anatomy-card {
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  margin-bottom: 3.5rem;
+}
+
+.anatomy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.anatomy-part {
+  background: #fff8f0;
+  padding: 1.6rem;
+  border-radius: var(--radius-md);
+  border-bottom: 4px solid var(--cempasuchil);
+  transition: var(--transition-smooth);
+}
+
+.anatomy-part:hover {
+  transform: translateY(-4px);
+  background: #fff2e0;
+}
+
+.anatomy-part h4 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.25rem;
+  color: var(--cafe-tierra);
+  margin-bottom: 0.5rem;
+}
+
+/* Galería de variedades regionales de pan de muerto */
+.pan-varieties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.pan-card {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+}
+
+.pan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+}
+
+.pan-photo {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pan-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.pan-card:hover .pan-photo img {
+  transform: scale(1.08);
+}
+
+.pan-region-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(229, 0, 125, 0.9);
+  color: #ffffff;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  backdrop-filter: blur(4px);
+}
+
+.pan-body {
+  padding: 1.6rem;
+  flex: 1;
+}
+
+.pan-body h3 {
+  font-family: 'Fredoka', sans-serif;
+  font-size: 1.35rem;
+  color: var(--cafe-tierra);
+  margin-bottom: 0.6rem;
+}
+
+.pan-body p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   PIE DE PÁGINA (FOOTER) - UBM / LIAF1001 / REDES
+   ========================================================================== */
+.main-footer {
+  background: #25160e;
+  color: #f7ede2;
+  position: relative;
+  margin-top: auto;
+  overflow: hidden;
+}
+
+.footer-papel-border {
+  height: 10px;
+  background: linear-gradient(90deg, 
+    var(--cempasuchil) 0%, 
+    var(--rosa-mexicano) 25%, 
+    var(--amarillo-cempasuchil) 50%, 
+    var(--azul-maya) 75%, 
+    var(--cempasuchil) 100%
+  );
+}
+
+.footer-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 3.5rem 1.5rem 2rem;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.8rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-university-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 115, 0, 0.4);
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-full);
+}
+
+.footer-university-title {
+  font-family: 'Fredoka', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.group-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--cempasuchil), var(--rosa-mexicano));
+  color: #ffffff;
+  padding: 0.35rem 1.1rem;
+  border-radius: var(--radius-full);
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 1.5px;
+  box-shadow: 0 4px 14px rgba(229, 0, 125, 0.3);
+}
+
+.footer-social-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.social-title {
+  font-size: 0.95rem;
+  color: #d1bdae;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.social-icon-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
+  transition: var(--transition-smooth);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.social-icon-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  transition: var(--transition-smooth);
+}
+
+.social-icon-btn.facebook:hover {
+  background: #1877f2;
+  border-color: #1877f2;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 6px 18px rgba(24, 119, 242, 0.4);
+}
+
+.social-icon-btn.instagram:hover {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+  border-color: transparent;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 6px 18px rgba(214, 36, 159, 0.4);
+}
+
+.social-icon-btn.x-twitter:hover {
+  background: #000000;
+  border-color: #ffffff;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.8rem;
+  font-size: 0.9rem;
+  color: #a89485;
+  gap: 1rem;
+}
+
+.created-year {
+  font-weight: 600;
+  color: var(--amarillo-cempasuchil);
+}
+
+/* ==========================================================================
+   BOTÓN FLOTANTE: VOLVER ARRIBA & EFECTO PÉTALOS
+   ========================================================================== */
+.floating-petal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  background: radial-gradient(circle, #ffa033 0%, #ff6f00 100%);
+  border-radius: 60% 0 60% 0;
+  opacity: 0.75;
+  pointer-events: none;
+  animation: fallPetal linear infinite;
+}
+
+@keyframes fallPetal {
+  0% {
+    top: -5%;
+    transform: rotate(0deg) translateX(0);
+    opacity: 0.8;
+  }
+  100% {
+    top: 105%;
+    transform: rotate(360deg) translateX(80px);
+    opacity: 0.2;
+  }
+}
+
+.scroll-top-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--cempasuchil), var(--rosa-mexicano));
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(229, 0, 125, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-smooth);
+}
+
+.scroll-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top-btn:hover {
+  transform: translateY(-4px) scale(1.1);
+}
+
+/* ==========================================================================
+   MODAL LIGHTBOX PARA AMPLIAR IMÁGENES CULTURALES
+   ========================================================================== */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(18, 10, 6, 0.92);
+  backdrop-filter: blur(8px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.image-modal.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content-wrap {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-content-wrap img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.modal-caption {
+  color: #ffffff;
+  font-family: 'Fredoka', sans-serif;
+  margin-top: 1rem;
+  font-size: 1.1rem;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: -45px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  font-size: 2.2rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: var(--transition-smooth);
+}
+
+.modal-close-btn:hover {
+  color: var(--rosa-mexicano);
+  transform: scale(1.2);
+}
+
+/* ==========================================================================
+   RESPONSIVIDAD Y ADAPTACIÓN MÓVIL
+   ========================================================================== */
+@media (max-width: 992px) {
+  .dual-portrait-showcase {
+    grid-template-columns: 1fr;
+  }
+
+  .history-origin-box {
+    grid-template-columns: 1fr;
+  }
+
+  .carousel-container {
+    height: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 74px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    flex-direction: column;
+    padding: 1.5rem 1.2rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+    border-bottom: 2px solid #ffd8bf;
+    transform: translateY(-120%);
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-smooth);
+  }
+
+  .nav-links.mobile-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-item {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1rem;
+  }
+
+  .carousel-container {
+    height: 340px;
+  }
+
+  .slide-caption-overlay {
+    padding: 1.5rem 1rem 1rem;
+  }
+
+  .slide-title {
+    font-size: 1.25rem;
+  }
+
+  .slide-desc {
+    font-size: 0.85rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+
+  /* Búsqueda en Móviles */
+  .search-container {
+    margin-left: auto;
+    margin-right: 0.6rem;
+  }
+
+  .search-input {
+    width: 105px;
+    font-size: 0.82rem;
+  }
+
+  .search-bar:focus-within .search-input {
+    width: 135px;
+  }
+
+  .search-action-btn span {
+    display: none;
+  }
+
+  .search-action-btn {
+    padding: 0.35rem 0.55rem;
+  }
+
+  .search-results-dropdown {
+    width: min(320px, calc(100vw - 32px));
+    right: -45px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- ========================================================================
+       GUIRNALDA TRADICIONAL DE PAPEL PICADO MEXICANO
+       ======================================================================== -->
+  <div class="papel-picado-banner" aria-hidden="true">
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+  </div>
+
+  <!-- Contenedor para lluvia de pétalos dorados de Cempasúchil -->
+  <div id="petals-container" class="floating-petal-container" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       ENCABEZADO Y MENÚ SUPERIOR DE NAVEGACIÓN
+       ======================================================================== -->
+  <header class="main-header">
+    <nav class="nav-container" aria-label="Navegación principal">
+      <!-- LOGO ANIMADO: CRÁNEO CARICATUREZCO MAQUILLADO DE CATRINA (SIN LETRAS, PURA IMAGEN) -->
+      <a href="#inicio" id="brand-logo-btn" class="brand-link" title="Inicio - Día de Muertos en México">
+        <div class="logo-wrapper">
+          <svg class="skull-catrina-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logotipo animado de calaverita catrina sonriente con corona de flores">
+            <defs>
+              <!-- Gradiente para el rostro blanco aperlado -->
+              <radialGradient id="craniumGrad" cx="50%" cy="45%" r="50%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="85%" stop-color="#fdf5ec" />
+                <stop offset="100%" stop-color="#fae3ce" />
+              </radialGradient>
+              <!-- Gradiente flor de cempasúchil central -->
+              <radialGradient id="marigoldGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffea00" />
+                <stop offset="60%" stop-color="#ff7300" />
+                <stop offset="100%" stop-color="#e5007d" />
+              </radialGradient>
+            </defs>
+
+            <!-- Base del cráneo caricaturezco -->
+            <path d="M26,48 C22,30 35,16 50,16 C65,16 78,30 74,48 C72,56 70,62 65,65 C63,74 59,80 50,80 C41,80 37,74 35,65 C30,62 28,56 26,48 Z" fill="url(#craniumGrad)" stroke="#4e342e" stroke-width="2.5" stroke-linejoin="round" />
+
+            <!-- Mandíbula y dientes con sonrisa amigable -->
+            <path d="M42,68 L42,75 M46,67 L46,76 M50,67 L50,76 M54,67 L54,76 M58,68 L58,75" stroke="#4e342e" stroke-width="2" stroke-linecap="round" />
+            <path d="M38,71 Q50,77 62,71" fill="none" stroke="#e5007d" stroke-width="1.8" stroke-linecap="round" />
+
+            <!-- Chapitas sonrojadas de Catrina -->
+            <circle class="catrina-blush" cx="33" cy="56" r="5.5" fill="#ff70a6" opacity="0.75" />
+            <circle class="catrina-blush" cx="67" cy="56" r="5.5" fill="#ff70a6" opacity="0.75" />
+
+            <!-- Nariz en forma de corazón invertido mexicano -->
+            <path d="M50,56 C48.5,52 46,55 50,59 C54,55 51.5,52 50,56 Z" fill="#6b2d5c" />
+
+            <!-- Ojos de Catrina con pétalos circulares florales animados -->
+            <!-- Ojo Izquierdo -->
+            <g transform="translate(37,44)">
+              <g class="eye-flower">
+                <circle cx="0" cy="0" r="10" fill="#e5007d" />
+                <!-- Pétalos amarillos alrededor -->
+                <circle cx="0" cy="-10" r="2.8" fill="#ffbe0b" />
+                <circle cx="7" cy="-7" r="2.8" fill="#ff7300" />
+                <circle cx="10" cy="0" r="2.8" fill="#ffbe0b" />
+                <circle cx="7" cy="7" r="2.8" fill="#ff7300" />
+                <circle cx="0" cy="10" r="2.8" fill="#ffbe0b" />
+                <circle cx="-7" cy="7" r="2.8" fill="#ff7300" />
+                <circle cx="-10" cy="0" r="2.8" fill="#ffbe0b" />
+                <circle cx="-7" cy="-7" r="2.8" fill="#ff7300" />
+              </g>
+              <circle cx="0" cy="0" r="6.2" fill="#2d221c" />
+              <circle cx="2" cy="-2" r="2" fill="#ffffff" />
+            </g>
+
+            <!-- Ojo Derecho -->
+            <g transform="translate(63,44)">
+              <g class="eye-flower">
+                <circle cx="0" cy="0" r="10" fill="#e5007d" />
+                <!-- Pétalos amarillos alrededor -->
+                <circle cx="0" cy="-10" r="2.8" fill="#ffbe0b" />
+                <circle cx="7" cy="-7" r="2.8" fill="#ff7300" />
+                <circle cx="10" cy="0" r="2.8" fill="#ffbe0b" />
+                <circle cx="7" cy="7" r="2.8" fill="#ff7300" />
+                <circle cx="0" cy="10" r="2.8" fill="#ffbe0b" />
+                <circle cx="-7" cy="7" r="2.8" fill="#ff7300" />
+                <circle cx="-10" cy="0" r="2.8" fill="#ffbe0b" />
+                <circle cx="-7" cy="-7" r="2.8" fill="#ff7300" />
+              </g>
+              <circle cx="0" cy="0" r="6.2" fill="#2d221c" />
+              <circle cx="2" cy="-2" r="2" fill="#ffffff" />
+            </g>
+
+            <!-- Telaraña y ornamentos en la frente -->
+            <path d="M50,23 Q45,28 50,33 Q55,28 50,23 Z" fill="#0096c7" />
+            <circle cx="50" cy="28" r="1.5" fill="#ffea00" />
+
+            <!-- Corona de Flores tradicional de Catrina (Rosas y Cempasúchil) -->
+            <g class="crown-flower" transform="translate(0, -2)">
+              <!-- Hojas verdes de fondo -->
+              <ellipse cx="28" cy="19" rx="6" ry="3" fill="#06d6a0" transform="rotate(-30 28 19)" />
+              <ellipse cx="72" cy="19" rx="6" ry="3" fill="#06d6a0" transform="rotate(30 72 19)" />
+
+              <!-- Flor Izquierda: Rosa Mexicana -->
+              <circle cx="31" cy="20" r="7.5" fill="#e5007d" />
+              <circle cx="31" cy="20" r="4.5" fill="#ff4081" />
+              <circle cx="31" cy="20" r="2" fill="#ffe4f1" />
+
+              <!-- Flor Central: Cempasúchil Naranja Resplandeciente -->
+              <circle cx="50" cy="14" r="9.5" fill="url(#marigoldGrad)" />
+              <circle cx="50" cy="14" r="6" fill="#ffbe0b" />
+              <circle cx="50" cy="14" r="2.8" fill="#ff7300" />
+
+              <!-- Flor Derecha: Flor Amarilla brillante -->
+              <circle cx="69" cy="20" r="7.5" fill="#ffbe0b" />
+              <circle cx="69" cy="20" r="4.5" fill="#ff7300" />
+              <circle cx="69" cy="20" r="2" fill="#fffbe6" />
+            </g>
+          </svg>
+        </div>
+      </a>
+
+      <!-- BOTÓN MENÚ MÓVIL (HAMBURGUESA) -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- ENLACES DE NAVEGACIÓN REQUERIDOS (5 PÁGINAS) -->
+      <ul class="nav-links" id="nav-links" role="menubar">
+        <li class="nav-item" role="none">
+          <a href="#inicio" class="nav-btn active" data-target="inicio" role="menuitem">
+            <span class="icon" aria-hidden="true">🏠</span> Inicio
+          </a>
+        </li>
+        <li class="nav-item" role="none">
+          <a href="#altar" class="nav-btn" data-target="altar" role="menuitem">
+            <span class="icon" aria-hidden="true">🕯️</span> Altar
+          </a>
+        </li>
+        <li class="nav-item" role="none">
+          <a href="#catrinas" class="nav-btn" data-target="catrinas" role="menuitem">
+            <span class="icon" aria-hidden="true">🌹</span> Catrinas
+          </a>
+        </li>
+        <li class="nav-item" role="none">
+          <a href="#calaveras" class="nav-btn" data-target="calaveras" role="menuitem">
+            <span class="icon" aria-hidden="true">💀</span> Calaveras de azúcar
+          </a>
+        </li>
+        <li class="nav-item" role="none">
+          <a href="#pan" class="nav-btn" data-target="pan" role="menuitem">
+            <span class="icon" aria-hidden="true">🍞</span> Pan de muerto
+          </a>
+        </li>
+      </ul>
+
+      <!-- BARRA Y BOTÓN DE BÚSQUEDA INTERACTIVA -->
+      <div class="search-container" id="search-container">
+        <div class="search-bar">
+          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="site-search-input" class="search-input" placeholder="Buscar: altar, pan, catrina..." autocomplete="off" aria-label="Buscar en el sitio web">
+          <button type="button" id="search-clear-btn" class="search-clear-btn" aria-label="Limpiar búsqueda" title="Borrar">✕</button>
+          <button type="button" id="search-action-btn" class="search-action-btn" aria-label="Ejecutar búsqueda" title="Buscar">
+            <span>Buscar</span>
+          </button>
+        </div>
+        <!-- MENÚ DE RESULTADOS DESPLEGABLES -->
+        <div id="search-results-dropdown" class="search-results-dropdown" role="listbox" aria-label="Resultados de búsqueda"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================================================
+       CONTENIDO PRINCIPAL: 5 PÁGINAS / VISTAS EDUCATIVAS
+       ======================================================================== -->
+  <main class="main-content">
+
+    <!-- --------------------------------------------------------------------
+         PÁGINA 1: INICIO (PRINCIPAL)
+         -------------------------------------------------------------------- -->
+    <section id="inicio" class="page-view active-view" aria-labelledby="hero-title">
+      <div class="section-hero">
+        <div class="badge-festivo">
+          <span>✨ Patrimonio Cultural Inmaterial de la Humanidad (UNESCO)</span>
+        </div>
+        <h1 id="hero-title" class="main-title">
+          Cómo se vive el <span class="title-highlight">día de muertos</span> en México
+        </h1>
+        <p class="section-subtitle">
+          Una fiesta ancestral donde el amor, la memoria y el color trascienden la frontera entre la vida y la muerte para recibir con brazos abiertos las almas de nuestros seres queridos.
+        </p>
+
+        <div class="cempasuchil-divider">
+          <span class="flower-icon" aria-hidden="true">🌼</span>
+        </div>
+      </div>
+
+      <!-- INTRODUCCIÓN CULTURAL EDUCATIVA -->
+      <div class="intro-grid">
+        <article class="cultural-card">
+          <div class="card-icon-pill" aria-hidden="true">🏵️</div>
+          <h2 class="card-title">El Origen Prehispánico y Mestizo</h2>
+          <p class="card-text">
+            Las raíces del Día de Muertos se remontan a las grandes civilizaciones mesoamericanas como la mexica, maya, purépecha y totonaca. Para nuestros antepasados, la muerte no representaba un final temible ni un castigo divino, sino una etapa natural de transformación dentro del ciclo cósmico. Rendían culto a <strong>Mictecacíhuatl</strong>, la "Dama de la Muerte" y guardiana del <em>Mictlán</em> (el inframundo de nueve niveles).
+          </p>
+          <p class="card-text" style="margin-top: 0.8rem;">
+            Con la llegada española en el siglo XVI, estas solemnes ceremonias indígenas convergieron en un vibrante sincretismo con las festividades católicas del Día de Todos los Santos (1 de noviembre) y de los Fieles Difuntos (2 de noviembre), naciendo la celebración más representativa de la identidad mexicana.
+          </p>
+        </article>
+
+        <article class="cultural-card pink-accent">
+          <div class="card-icon-pill" aria-hidden="true">🎺</div>
+          <h2 class="card-title">¿Cómo se Celebra en México?</h2>
+          <p class="card-text">
+            En México no se llora con desesperanza: <strong>se recuerda con fiesta, música y cariño</strong>. Las familias mexicanas transforman sus hogares y panteones en templos de luz y perfume. Se limpian y decoran las tumbas con senderos dorados de pétalos de cempasúchil para guiar a las almas desde el más allá hasta el mundo de los vivos.
+          </p>
+          <p class="card-text" style="margin-top: 0.8rem;">
+            Durante la noche del 1 al 2 de noviembre se realiza la tradicional <em>velación</em>: familias enteras comparten anécdotas, cantan con mariachi o tríos huastecos, beben chocolate caliente y degustan los platillos preferidos que en vida disfrutaron sus difuntos, reafirmando que nadie muere verdaderamente mientras permanezca en nuestra memoria.
+          </p>
+        </article>
+
+        <article class="cultural-card yellow-accent">
+          <div class="card-icon-pill" aria-hidden="true">🇲🇽</div>
+          <h2 class="card-title">Una Tradición Viva y Universitaria</h2>
+          <p class="card-text">
+            Desde los místicos lagos de Pátzcuaro y Janitzio en Michoacán, pasando por el solemne misticismo de San Andrés Mixquic en la Ciudad de México, hasta las fastuosas comparsas de Oaxaca y las Huastecas (Xantolo); la juventud mexicana mantiene viva esta herencia cultural creando ofrendas monumentales, concursos de catrinas y expresiones artísticas de gran orgullo nacional.
+          </p>
+        </article>
+      </div>
+
+      <!-- CARRUSEL DE IMÁGENES REALES SOBRE EL DÍA DE MUERTOS -->
+      <section class="carousel-showcase" aria-label="Galería interactiva de imágenes reales de Día de Muertos">
+        <div class="carousel-header">
+          <h3>Galería Visual: El Esplendor del Día de Muertos en México</h3>
+          <p>Fotografías reales que capturan la mística de los panteones, las ofrendas y el arte popular</p>
+        </div>
+
+        <div class="carousel-container" tabindex="0" aria-roledescription="carrusel">
+          <div class="carousel-track">
+            <!-- Slide 1: Altar Tradicional Mexicano -->
+            <div class="carousel-slide active-slide">
+              <img src="https://images.unsplash.com/photo-1572537165377-627a37043464?auto=format&fit=crop&w=1200&q=80" 
+                   alt="Altar de muertos mexicano con flores de cempasúchil, veladoras y papel picado tradicional" 
+                   class="inspectable-img" loading="lazy">
+              <div class="slide-caption-overlay">
+                <span class="slide-tag">Tradición Ancestral</span>
+                <h4 class="slide-title">El Altar Familiar: Hogar de Reencuentro</h4>
+                <p class="slide-desc">Colores vivos, aroma a copal e incienso y veladoras encendidas para recibir con calidez las almas de nuestros seres queridos.</p>
+              </div>
+            </div>
+
+            <!-- Slide 2: Panteón y Velación Nocturna -->
+            <div class="carousel-slide">
+              <img src="https://images.unsplash.com/photo-1604076913837-52ab5629fba9?auto=format&fit=crop&w=1200&q=80" 
+                   alt="Velación nocturna en cementerio mexicano iluminado con cientos de velas y flores de cempasúchil" 
+                   class="inspectable-img" loading="lazy">
+              <div class="slide-caption-overlay">
+                <span class="slide-tag">Misticismo y Luz</span>
+                <h4 class="slide-title">La Velación en los Panteones</h4>
+                <p class="slide-desc">En sitios emblemáticos como Janitzio y Mixquic, la noche se vuelve día gracias al resplandor dorado de miles de cirios encendidos sobre las tumbas.</p>
+              </div>
+            </div>
+
+            <!-- Slide 3: Catrinas y Desfile Cultural -->
+            <div class="carousel-slide">
+              <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80" 
+                   alt="Retrato de una mujer caracterizada con maquillaje artístico de Catrina y corona de flores" 
+                   class="inspectable-img" loading="lazy">
+              <div class="slide-caption-overlay">
+                <span class="slide-tag">Arte y Caracterización</span>
+                <h4 class="slide-title">Elegancia de las Catrinas</h4>
+                <p class="slide-desc">El arte del maquillaje facial y los trajes de época plasman la visión inmortalizada por José Guadalupe Posada y Diego Rivera.</p>
+              </div>
+            </div>
+
+            <!-- Slide 4: Campos Dorados de Cempasúchil -->
+            <div class="carousel-slide">
+              <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80" 
+                   alt="Campos de flor de cempasúchil color naranja brillante listos para la cosecha de día de muertos" 
+                   class="inspectable-img" loading="lazy">
+              <div class="slide-caption-overlay">
+                <span class="slide-tag">Naturaleza Sagrada</span>
+                <h4 class="slide-title">La Flor de Cempasúchil: Sendero de Luz</h4>
+                <p class="slide-desc">La flor de las veinte flores (Cempohualxochitl) cuyo intenso aroma y color solar marcan el camino de regreso al hogar terrenal.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botones de Navegación del Carrusel -->
+          <button class="carousel-btn prev" id="carousel-prev" aria-label="Imagen anterior">❮</button>
+          <button class="carousel-btn next" id="carousel-next" aria-label="Siguiente imagen">❯</button>
+
+          <!-- Indicadores de Posición -->
+          <div class="carousel-indicators" id="carousel-indicators"></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         PÁGINA 2: ALTAR DE DÍA DE MUERTOS
+         -------------------------------------------------------------------- -->
+    <section id="altar" class="page-view" aria-labelledby="altar-title">
+      <div class="section-hero">
+        <div class="badge-festivo">
+          <span>🕯️ Espacio Sagrado de Bienvenida</span>
+        </div>
+        <h2 id="altar-title" class="main-title">
+          El Sagrado <span class="title-highlight">Altar de Muertos</span>
+        </h2>
+        <p class="section-subtitle">
+          El altar u ofrenda es un puente espiritual que une dos mundos. Cada nivel, color y objeto colocado posee un significado cosmológico y afectivo imprescindible para el banquete de las ánimas.
+        </p>
+        <div class="cempasuchil-divider">
+          <span class="flower-icon" aria-hidden="true">🌼</span>
+        </div>
+      </div>
+
+      <!-- LOS NIVELES DEL ALTAR -->
+      <div class="altar-levels-overview">
+        <h3 style="font-family: 'Fredoka', sans-serif; font-size: 1.7rem; color: var(--cafe-tierra); text-align: center;">
+          Estructura y Niveles Tradicionales de la Ofrenda
+        </h3>
+        <p style="text-align: center; color: var(--text-muted); max-width: 750px; margin: 0.5rem auto 0;">
+          Dependiendo de la tradición regional, los altares pueden construirse de 2, 3 o 7 escalones:
+        </p>
+
+        <div class="levels-grid">
+          <div class="level-card">
+            <div class="level-number">2</div>
+            <h4 class="level-name">Niveles (Cielo y Tierra)</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Representa la división más elemental: el mundo material de los vivos en la base y el plano celestial o espiritual en la parte superior.
+            </p>
+          </div>
+
+          <div class="level-card">
+            <div class="level-number">3</div>
+            <h4 class="level-name">Niveles (Cielo, Tierra y Purgatorio)</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              En la cosmogonía mestiza simboliza el cielo, la tierra y el purgatorio católico; o bien la infancia, la madurez y la vejez del ser humano.
+            </p>
+          </div>
+
+          <div class="level-card">
+            <div class="level-number">7</div>
+            <h4 class="level-name">Niveles (El Altar Completo)</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Es el altar más tradicional y ceremonial. Representa los siete escalones que el alma debe cruzar para librar los peligros del inframundo y alcanzar el descanso eterno en el Mictlán o en el Paraíso.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELEMENTOS IMPRESCINDIBLES DEL ALTAR CON IMÁGENES -->
+      <h3 class="elements-section-title">Elementos Indispensables y su Simbolismo</h3>
+
+      <div class="elements-grid">
+        <!-- Velas y Veladoras -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1604076913837-52ab5629fba9?auto=format&fit=crop&w=700&q=80" 
+                 alt="Velas y veladoras encendidas en el altar de día de muertos" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Fuego</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">🕯️ Velas y Veladoras</h4>
+            <p class="element-desc">
+              Representan la <strong>luz, la fe y la esperanza</strong>. Su flama cálida es la guía que alumbra el sendero para que las ánimas no se desvíen en la oscuridad y encuentren el camino de regreso a su hogar de antaño.
+            </p>
+          </div>
+        </article>
+
+        <!-- Flor de Cempasúchil -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80" 
+                 alt="Pétalos de flor de cempasúchil formando un sendero aromático" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Tierra / Naturaleza</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">🌼 Flor de Cempasúchil</h4>
+            <p class="element-desc">
+              Del náhuatl <em>Cempohualxochitl</em> ("veinte flores"). Su amarillo solar y su penetrante fragancia crean una huella visual y olfativa que las almas pueden percibir fácilmente desde el Mictlán.
+            </p>
+          </div>
+        </article>
+
+        <!-- Fotografías de los Difuntos -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1572537165377-627a37043464?auto=format&fit=crop&w=700&q=80" 
+                 alt="Fotografías familiares enmarcadas en la cúspide del altar de muertos" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Memoria</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">🖼️ Fotografías de los Difuntos</h4>
+            <p class="element-desc">
+              Se colocan en el nivel superior de la ofrenda. Recuerdan a quién está dedicado el altar y simbolizan que nuestros antepasados continúan vivos en el corazón y la memoria de las nuevas generaciones.
+            </p>
+          </div>
+        </article>
+
+        <!-- Papel Picado -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=700&q=80" 
+                 alt="Papel picado de colores vivos ondeando al viento" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Viento</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">🎏 Papel Picado</h4>
+            <p class="element-desc">
+              Representa el <strong>elemento viento</strong>. Su movimiento suave avisa la llegada de los espíritus a la habitación, y sus vibrantes colores impregnan el luto de alegría festiva.
+            </p>
+          </div>
+        </article>
+
+        <!-- Agua y Sal -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?auto=format&fit=crop&w=700&q=80" 
+                 alt="Vasos de agua pura y platos con sal colocados en la ofrenda" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Agua y Purificación</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">💧 Agua Pura y Sal</h4>
+            <p class="element-desc">
+              El <strong>vaso de agua</strong> mitiga la sed del alma tras su largo recorrido por el inframundo. La <strong>sal</strong> es el elemento purificador que evita que el cuerpo del difunto se corrompa en su trayecto de ida y vuelta.
+            </p>
+          </div>
+        </article>
+
+        <!-- Copal e Incienso -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1572293007244-8b60335d2b7d?auto=format&fit=crop&w=700&q=80" 
+                 alt="Sahumador con humo de copal purificando el ambiente del altar" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Espíritu</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">💨 Copal e Incienso</h4>
+            <p class="element-desc">
+              Resina sagrada que limpia el lugar de malos espíritus y malas energías, consagrando el hogar para que las ánimas queridas puedan ingresar con absoluta paz y serenidad.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- IMPORTANCIA DE LOS COLORES EN EL ALTAR -->
+      <section class="colors-significance">
+        <h3 style="font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--cafe-tierra); text-align: center;">
+          El Significado de los Colores Tradicionales
+        </h3>
+        <p style="text-align: center; color: var(--text-muted); max-width: 800px; margin: 0.6rem auto 0;">
+          Los tonos del altar no son simples adornos; constituyen un lenguaje sagrado y cromático de profundo valor espiritual:
+        </p>
+
+        <div class="color-pills-grid">
+          <div class="color-pill-card" style="background: #fff5eb; border: 1px solid #ffd8bf;">
+            <div class="color-sample" style="background: var(--cempasuchil);"></div>
+            <h4>Naranja Cempasúchil</h4>
+            <p>La luz del sol que bendice la tierra e ilumina el camino entre ambos mundos.</p>
+          </div>
+
+          <div class="color-pill-card" style="background: #fdf5f9; border: 1px solid #ffd1e8;">
+            <div class="color-sample" style="background: var(--rosa-mexicano);"></div>
+            <h4>Rosa Mexicano</h4>
+            <p>La alegría desbordante de la fiesta y la celebración vibrante de la vida compartida.</p>
+          </div>
+
+          <div class="color-pill-card" style="background: #fcf9ff; border: 1px solid #e9d5f7;">
+            <div class="color-sample" style="background: var(--morado-mictlan);"></div>
+            <h4>Morado y Púrpura</h4>
+            <p>El color ceremonial del duelo católico, el respeto y la solemnidad ante la pérdida.</p>
+          </div>
+
+          <div class="color-pill-card" style="background: #f7fcff; border: 1px solid #d0efff;">
+            <div class="color-sample" style="background: #ffffff; border: 2px solid #ccc;"></div>
+            <h4>Blanco Puro</h4>
+            <p>La pureza del alma, la inocencia de los niños difuntos (angelitos) y la redención.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         PÁGINA 3: CATRINAS Y CATRINES
+         -------------------------------------------------------------------- -->
+    <section id="catrinas" class="page-view" aria-labelledby="catrinas-title">
+      <div class="section-hero">
+        <div class="badge-festivo">
+          <span>🎭 Ícono de Elegancia y Sátira Nacional</span>
+        </div>
+        <h2 id="catrinas-title" class="main-title">
+          El Arte de las <span class="title-highlight">Catrinas y Catrines</span>
+        </h2>
+        <p class="section-subtitle">
+          De una crítica mordaz contra el esnobismo de la época porfiriana hasta el símbolo internacional más amado de la estética y la cultura mexicana.
+        </p>
+        <div class="cempasuchil-divider">
+          <span class="flower-icon" aria-hidden="true">🌼</span>
+        </div>
+      </div>
+
+      <!-- COMPARATIVA VISUAL: LA CATRINA Y EL CATRÍN -->
+      <div class="dual-portrait-showcase">
+        <!-- Tarjeta de La Catrina -->
+        <article class="character-card">
+          <div class="character-img-box">
+            <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80" 
+                 alt="Mujer con atuendo tradicional y maquillaje de La Catrina con diadema de flores de cempasúchil" 
+                 class="inspectable-img" loading="lazy">
+            <div class="character-badge">La Dama de la Eternidad</div>
+          </div>
+          <div class="character-info">
+            <h3>La Catrina Mexicana</h3>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+              Representa la belleza majestuosa que desafía la mortalidad. Su rostro calavérico está adornado con un elaborado maquillaje de detalles florales, pedrería brillante y labios con costuras sutiles.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Maquillaje:</strong> Base blanca impoluta, cuencas oculares enmarcadas por pétalos en tonos rosa y naranja, y arabescos en la frente y barbilla.</li>
+              <li><strong>Vestuario:</strong> Vestidos victorianos de alta costura o trajes típicos bordados (como los de tehuana o charra), mantillas de encaje negro y abanicos emplumados.</li>
+              <li><strong>Tocado:</strong> Fastuosos sombreros de ala ancha con plumas de avestruz o coronas rebosantes de flores de cempasúchil y rosas rojas.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Tarjeta de El Catrín -->
+        <article class="character-card catrin-theme">
+          <div class="character-img-box">
+            <img src="https://images.unsplash.com/photo-1572293007244-8b60335d2b7d?auto=format&fit=crop&w=800&q=80" 
+                 alt="Hombre vestido elegantemente como El Catrín con traje formal y sombrero de copa" 
+                 class="inspectable-img" loading="lazy">
+            <div class="character-badge">El Caballero Calavera</div>
+          </div>
+          <div class="character-info">
+            <h3>El Catrín</h3>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+              La contraparte masculina que encarna al dandi o caballero de la alta sociedad. Con porte gallardo y porte refinado, acompaña a la Catrina en desfiles y verbenas populares.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Maquillaje:</strong> Calavera estilizada con bigote refinado pintado en negro, sombras oscuras en los pómulos y detalles barrocos en las sienes.</li>
+              <li><strong>Vestuario:</strong> Frac, esmoquin negro, chaleco de terciopelo, corbatín de seda, o el imponente traje de charro de gala con botonadura de plata.</li>
+              <li><strong>Accesorios:</strong> Elegante sombrero de copa alta (bombín), bastón con empuñadura plateada tallada y flor de cempasúchil en la solapa.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <!-- HISTORIA Y ORIGEN: JOSÉ GUADALUPE POSADA Y DIEGO RIVERA -->
+      <section class="history-origin-box">
+        <div class="history-text">
+          <span class="badge-festivo">📜 Raíces Históricas</span>
+          <h3>De "Calavera Garbancera" a "La Catrina"</h3>
+          <p style="color: var(--text-muted); margin-bottom: 1rem; line-height: 1.7;">
+            El genial grabador hidrocálido <strong>José Guadalupe Posada</strong> creó en 1912 a la <em>"Calavera Garbancera"</em>. Su obra era una aguda crítica social hacia las personas de sangre indígena que vendían garbanzo y fingían ser aristócratas europeos, renegando de sus raíces mexicanas:
+          </p>
+          <blockquote style="font-style: italic; color: var(--cafe-tierra); border-left: 3px solid var(--rosa-mexicano); padding-left: 1rem; margin-bottom: 1rem;">
+            "La muerte es democrática, ya que a fin de cuentas, güera, morena, rica o pobre, toda la gente acaba siendo calavera."
+          </blockquote>
+          <p style="color: var(--text-muted); line-height: 1.7;">
+            Años más tarde, en 1947, el pintor <strong>Diego Rivera</strong> inmortalizó a este personaje en su monumental mural <em>"Sueño de una tarde dominical en la Alameda Central"</em>. Rivera le dibujó por primera vez su cuerpo entero, la vistió con un distinguido atuendo aristocrático con boa de plumas y la bautizó definitivamente como <strong>"La Catrina"</strong>.
+          </p>
+        </div>
+
+        <div class="makeup-guide-box">
+          <h4 style="font-family: 'Fredoka', sans-serif; font-size: 1.4rem; color: var(--cafe-tierra); margin-bottom: 1rem;">
+            Claves del Maquillaje Actual
+          </h4>
+          <div class="makeup-steps-grid">
+            <div class="makeup-step-card">
+              <h4>1. Lienzo Blanco</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Pintura aquacolor o base blanca mate sellada con polvo traslúcido para imitar el hueso.</p>
+            </div>
+            <div class="makeup-step-card">
+              <h4>2. Cuencas Florales</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Círculos en negro, rosa mexicano o morado, contorneados con pétalos y perlas adhesivas.</p>
+            </div>
+            <div class="makeup-step-card">
+              <h4>3. Sonrisa Eterna</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Líneas transversales en los labios simulando los dientes del cráneo con toque coqueto.</p>
+            </div>
+            <div class="makeup-step-card">
+              <h4>4. Resplandor Dorado</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Detalles en escarcha, lentejuelas y pigmentos dorados en honor a la flor de cempasúchil.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         PÁGINA 4: CALAVERAS DE AZÚCAR Y CHOCOLATE
+         -------------------------------------------------------------------- -->
+    <section id="calaveras" class="page-view" aria-labelledby="calaveras-title">
+      <div class="section-hero">
+        <div class="badge-festivo">
+          <span>🍬 La Muerte más Dulce del Mundo</span>
+        </div>
+        <h2 id="calaveras-title" class="main-title">
+          Calaveras de <span class="title-highlight">Azúcar y Chocolate</span>
+        </h2>
+        <p class="section-subtitle">
+          Piezas maestras de la confitería tradicional mexicana que nos recuerdan que la muerte también puede saborearse con alegría y dulzura.
+        </p>
+        <div class="cempasuchil-divider">
+          <span class="flower-icon" aria-hidden="true">🌼</span>
+        </div>
+      </div>
+
+      <!-- ORIGEN Y SIGNIFICADO DEL ALFEÑIQUE -->
+      <article class="skulls-origin-banner">
+        <div>
+          <h3 style="font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--cafe-tierra); margin-bottom: 0.8rem;">
+            Del Tzompantli prehispánico al Alfeñique Colonial
+          </h3>
+          <p style="color: var(--text-muted); line-height: 1.7;">
+            En tiempos prehispánicos, los mexicas conservaban cráneos reales en empalizadas sagradas conocidas como <strong>Tzompantli</strong> como tributo y ofrenda a sus dioses para agradecer el ciclo vital del universo.
+          </p>
+          <p style="color: var(--text-muted); line-height: 1.7; margin-top: 0.8rem;">
+            Tras la Conquista, los frailes evangelizadores prohibieron los ritos con cráneos verdaderos. Los hábiles artesanos indígenas adaptaron entonces la técnica árabe-española del <strong>alfeñique</strong> (pasta de azúcar de caña pura moldeable) creando calaveritas comestibles decoradas con llamativos colores vegetales, lentejuelas y grecas de azúcar glasé.
+          </p>
+        </div>
+      </article>
+
+      <!-- VARIEDADES: AZÚCAR VS CHOCOLATE VS AMARANTO -->
+      <div class="skulls-grid">
+        <!-- Calavera de Azúcar Clásica -->
+        <article class="skull-variety-card">
+          <div class="skull-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?auto=format&fit=crop&w=700&q=80" 
+                 alt="Calaveras tradicionales de azúcar blanco adornadas con glasé de colores vivos y papel estaño" 
+                 class="inspectable-img" loading="lazy">
+          </div>
+          <div class="skull-content">
+            <h3>Calaveras Tradicionales de Azúcar</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+              Elaboradas artesanalmente mediante moldes de barro o yeso con azúcar refinada hervida a punto de bola. Su rasgo más distintivo es el <strong>papel estaño brillante en la frente</strong>, donde se escribe con tinta el nombre del difunto homenajeado o, en una pícara muestra de afecto, el nombre de un amigo vivo para recordarle con cariño su condición mortal.
+            </p>
+            <span style="font-size: 0.88rem; font-weight: 700; color: var(--cempasuchil-deep);">
+              📍 Toluca, Estado de México (Feria del Alfeñique)
+            </span>
+          </div>
+        </article>
+
+        <!-- Calaveras de Chocolate -->
+        <article class="skull-variety-card">
+          <div class="skull-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=700&q=80" 
+                 alt="Calaveritas artesanales de chocolate oscuro y chocolate con leche decoradas con confitería festiva" 
+                 class="inspectable-img" loading="lazy">
+          </div>
+          <div class="skull-content">
+            <h3>Calaveras de Chocolate y Cacao</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+              Una deliciosa evolución preferida por las nuevas generaciones. Hechas a base de rico chocolate amargo, semiamargo o blanco mexicano mezclado con canela y vainilla. Al colocarse en el altar, simbolizan la calidez del hogar y el deleite gastronómico que espera a las almas golosas de los infantes y adultos.
+            </p>
+            <span style="font-size: 0.88rem; font-weight: 700; color: var(--rosa-mexicano);">
+              🍫 Tradición chocolatera de Oaxaca y Tabasco
+            </span>
+          </div>
+        </article>
+
+        <!-- Calaveras de Amaranto -->
+        <article class="skull-variety-card">
+          <div class="skull-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1572537165377-627a37043464?auto=format&fit=crop&w=700&q=80" 
+                 alt="Calaveritas de amaranto con miel y pasas, dulce ancestral mexicano" 
+                 class="inspectable-img" loading="lazy">
+          </div>
+          <div class="skull-content">
+            <h3>Calaveras de Amaranto (Alegrías)</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+              Confeccionadas con semillas de amaranto (<em>huautli</em>) tostadas y aglutinadas con miel virgen o piloncillo derretido. El amaranto era considerado por los mexicas un grano sagrado e inmortal de alto valor ritual, por lo que estas calaveritas encierran una milenaria conexión espiritual.
+            </p>
+            <span style="font-size: 0.88rem; font-weight: 700; color: var(--amarillo-cempasuchil);">
+              🌾 Tradición ancestral de Tulyehualco, Xochimilco
+            </span>
+          </div>
+        </article>
+      </div>
+
+      <div class="sweet-tradition-quote">
+        <blockquote>
+          "En México la muerte no solo se festeja y se canta: también se degusta con el dulzor del azúcar, el aroma del cacao y la bendición del maíz."
+        </blockquote>
+        <p style="color: var(--text-light); font-weight: 600;">— Tradición Popular Mexicana</p>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         PÁGINA 5: PAN DE MUERTO
+         -------------------------------------------------------------------- -->
+    <section id="pan" class="page-view" aria-labelledby="pan-title">
+      <div class="section-hero">
+        <div class="badge-festivo">
+          <span>🍞 Sabor a Memoria y Azahar</span>
+        </div>
+        <h2 id="pan-title" class="main-title">
+          El Inconfundible <span class="title-highlight">Pan de Muerto</span>
+        </h2>
+        <p class="section-subtitle">
+          Una joya culinaria de la panadería artesanal mexicana cuyo esponjoso bocado aromático a flores de azahar es el corazón gastronómico del altar.
+        </p>
+        <div class="cempasuchil-divider">
+          <span class="flower-icon" aria-hidden="true">🌼</span>
+        </div>
+      </div>
+
+      <!-- ANATOMÍA Y SIMBOLISMO DEL PAN DE MUERTO TRADICIONAL -->
+      <article class="pan-anatomy-card">
+        <h3 style="font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--cafe-tierra); text-align: center;">
+          Anatomía y Simbolismo Oculto del Pan
+        </h3>
+        <p style="text-align: center; color: var(--text-muted); max-width: 750px; margin: 0.5rem auto 0;">
+          Cada curvatura, relieve y espolvoreado de azúcar sobre el pan tradicional guarda un significado profundo:
+        </p>
+
+        <div class="anatomy-grid">
+          <div class="anatomy-part">
+            <h4>Forma Circular</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Simboliza el ciclo continuo e interminable de la vida y de la muerte, donde no existe principio ni fin, sino un constante renacer cósmico.
+            </p>
+          </div>
+
+          <div class="anatomy-part">
+            <h4>La Coronilla / Esfera Superior</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              La bolita en la parte más alta representa el <strong>cráneo humano</strong> o la cabeza del difunto a quien se dedica el banquete.
+            </p>
+          </div>
+
+          <div class="anatomy-part">
+            <h4>Las Canillas o Huesitos Cruzados</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Las cuatro tiras en relieve representan los <strong>huesos de las extremidades</strong> y las lágrimas derramadas por los ausentes. También señalan los 4 puntos cardinales dedicados a Quetzalcóatl, Tezcatlipoca, Tláloc y Xipe Tótec.
+            </p>
+          </div>
+
+          <div class="anatomy-part">
+            <h4>El Aroma a Azahar y Naranja</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              La esencia de flor de azahar perfuma la masa en memoria de los seres queridos y evoca la belleza del campo mexicano para guiar el camino de las almas.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- VARIEDADES REGIONALES DE PAN DE MUERTO EN MÉXICO -->
+      <h3 style="font-family: 'Fredoka', sans-serif; font-size: 2rem; color: var(--cafe-tierra); text-align: center; margin-bottom: 2rem;">
+        Variedades Regionales de Pan de Muerto
+      </h3>
+
+      <div class="pan-varieties-grid">
+        <!-- 1. Clásico con Azúcar -->
+        <article class="pan-card">
+          <div class="pan-photo">
+            <img src="https://images.unsplash.com/photo-1604085572504-a392ddf0d86a?auto=format&fit=crop&w=700&q=80" 
+                 alt="Pan de muerto tradicional con azúcar blanca y canillas espolvoreadas" 
+                 class="inspectable-img" loading="lazy">
+            <span class="pan-region-tag">Centro de México</span>
+          </div>
+          <div class="pan-body">
+            <h3>Pan Tradicional de Azúcar</h3>
+            <p>
+              El más popular y extendido en la Ciudad de México y alrededores. Masa tipo brioche perfumada con naranja y azahar, barnizada generosamente con mantequilla derretida y cubierta de azúcar blanca crujiente.
+            </p>
+          </div>
+        </article>
+
+        <!-- 2. Con Ajonjolí -->
+        <article class="pan-card">
+          <div class="pan-photo">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80" 
+                 alt="Pan de muerto barnizado con huevo y espolvoreado con semillas de ajonjolí tostado" 
+                 class="inspectable-img" loading="lazy">
+            <span class="pan-region-tag">Puebla y Tlaxcala</span>
+          </div>
+          <div class="pan-body">
+            <h3>Pan Barnizado con Ajonjolí</h3>
+            <p>
+              En lugar de azúcar, se pincela con yema de huevo y se espolvorea con semillas de ajonjolí tostado. Posee un sabor sutilmente salado o agridulce, ideal para acompañar el mole poblano en la ofrenda.
+            </p>
+          </div>
+        </article>
+
+        <!-- 3. Pan de Yema Oaxaqueño -->
+        <article class="pan-card">
+          <div class="pan-photo">
+            <img src="https://images.unsplash.com/photo-1572537165377-627a37043464?auto=format&fit=crop&w=700&q=80" 
+                 alt="Pan de yema oaxaqueño con carita de alfeñique incrustada" 
+                 class="inspectable-img" loading="lazy">
+            <span class="pan-region-tag">Oaxaca</span>
+          </div>
+          <div class="pan-body">
+            <h3>Pan de Yema con Carita</h3>
+            <p>
+              Típico de los Valles Centrales de Oaxaca. Su masa densa y esponjosa lleva abundante yema de huevo y anís, y en un extremo se le incrusta una hermosa pequeña cabeza humana modelada en alfeñique que representa al difunto.
+            </p>
+          </div>
+        </article>
+
+        <!-- 4. Golletes y Roscas con Azúcar Rosa -->
+        <article class="pan-card">
+          <div class="pan-photo">
+            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=700&q=80" 
+                 alt="Golletes y panes de muerto tradicionales con azúcar de color rosa mexicano brillante" 
+                 class="inspectable-img" loading="lazy">
+            <span class="pan-region-tag">Mixquic y Edomex</span>
+          </div>
+          <div class="pan-body">
+            <h3>Golletes y Azúcar Rosa</h3>
+            <p>
+              Rosquillas duras y crujientes espolvoreadas con azúcar teñida de rosa mexicano intenso. En las ofrendas se sostienen mediante cañas de azúcar, evocando los antiguos sacrificios rituales.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       MODAL LIGHTBOX PARA INSPECCIONAR IMÁGENES
+       ======================================================================== -->
+  <div id="image-modal" class="image-modal" role="dialog" aria-modal="true" aria-label="Visualizador de fotografía a pantalla completa">
+    <div class="modal-content-wrap">
+      <button id="modal-close" class="modal-close-btn" aria-label="Cerrar vista">&times;</button>
+      <img id="modal-img" src="" alt="">
+      <p id="modal-caption" class="modal-caption"></p>
+    </div>
+  </div>
+
+  <!-- BOTÓN FLOTANTE "VOLVER ARRIBA" -->
+  <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Volver arriba">↑</button>
+
+  <!-- ========================================================================
+       PIE DE PÁGINA (FOOTER) - REQUISITOS INSTITUCIONALES Y SOCIALES
+       ======================================================================== -->
+  <footer class="main-footer">
+    <div class="footer-papel-border" aria-hidden="true"></div>
+
+    <div class="footer-content">
+      <div class="footer-top">
+        <!-- IDENTIFICACIÓN INSTITUCIONAL -->
+        <div class="footer-university-badge">
+          <span>🏛️ Proyecto Académico Educativo</span>
+        </div>
+        <h2 class="footer-university-title">UNIVERSIDAD BANCARIA DE MÉXICO</h2>
+        
+        <!-- CÓDIGO DE GRUPO SOLICITADO -->
+        <div>
+          <span class="group-tag">LIAF1001</span>
+        </div>
+
+        <!-- LOGOS DE REDES SOCIALES: INSTAGRAM Y FACEBOOK (SVG PURO) -->
+        <div class="footer-social-section">
+          <span class="social-title">Síguenos en Redes Sociales</span>
+          <div class="social-links">
+            <!-- Logo de Facebook -->
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn facebook" aria-label="Visitar Facebook de la Universidad">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+
+            <!-- Logo de Instagram -->
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn instagram" aria-label="Visitar Instagram de la Universidad">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <!-- Logo de X (antes Twitter) -->
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn x-twitter" aria-label="Visitar X (Twitter) de la Universidad">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTE INFERIOR: AÑO CREADO Y CRÉDITOS -->
+      <div class="footer-bottom">
+        <p>Tradición Mexicana Viva • Educación Cultural y Artística</p>
+        <p>Año de creación: <span id="year-span" class="created-year">2026</span> • Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Interactivo -->
+  <script>
+/**
+ * ==============================================================================
+ * DÍA DE MUERTOS EN MÉXICO - LÓGICA INTERACTIVA Y NAVEGACIÓN
+ * Universidad Bancaria de México | LIAF1001
+ * ==============================================================================
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initNavigation();
+  initCarousel();
+  initPetalsEffect();
+  initImageModal();
+  initScrollTop();
+  initDynamicYear();
+  initSearchSystem();
+});
+
+/* ==============================================================================
+ * 1. NAVEGACIÓN ENTRE PÁGINAS (VISTAS DINÁMICAS Y ENLACES)
+ * ============================================================================== */
+function initNavigation() {
+  const navButtons = document.querySelectorAll('.nav-btn');
+  const pageViews = document.querySelectorAll('.page-view');
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  // Función para cambiar de página
+  function switchPage(targetId) {
+    if (!targetId) return;
+
+    // Actualizar botones de navegación
+    navButtons.forEach(btn => {
+      if (btn.getAttribute('data-target') === targetId) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Actualizar vista visible
+    pageViews.forEach(view => {
+      if (view.id === targetId) {
+        view.classList.add('active-view');
+      } else {
+        view.classList.remove('active-view');
+      }
+    });
+
+    // Cerrar menú móvil si está abierto
+    if (navLinks && navLinks.classList.contains('mobile-open')) {
+      navLinks.classList.remove('mobile-open');
+      if (mobileToggle) mobileToggle.classList.remove('active');
+    }
+
+    // Scroll suave hacia el inicio del contenido
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+
+    // Actualizar hash de URL sin recargar
+    if (window.location.hash !== `#${targetId}`) {
+      history.pushState(null, null, `#${targetId}`);
+    }
+  }
+
+  // Exponer para el buscador global
+  window.switchPage = switchPage;
+
+  // Eventos de clic en botones de navegación
+  navButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetId = btn.getAttribute('data-target');
+      switchPage(targetId);
+    });
+  });
+
+  // Botón del logo (conduce a Inicio)
+  const brandLogo = document.getElementById('brand-logo-btn');
+  if (brandLogo) {
+    brandLogo.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchPage('inicio');
+    });
+  }
+
+  // Soporte para menú móvil hamburguesa
+  if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', () => {
+      mobileToggle.classList.toggle('active');
+      navLinks.classList.toggle('mobile-open');
+    });
+
+    // Cerrar al hacer clic fuera del menú móvil
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !mobileToggle.contains(e.target) && navLinks.classList.contains('mobile-open')) {
+        mobileToggle.classList.remove('active');
+        navLinks.classList.remove('mobile-open');
+      }
+    });
+  }
+
+  // Cargar sección según el hash de la URL (soporte de recarga y enlaces directos)
+  const currentHash = window.location.hash.replace('#', '');
+  if (currentHash && document.getElementById(currentHash)) {
+    switchPage(currentHash);
+  } else {
+    switchPage('inicio');
+  }
+
+  // Escuchar botón de atrás/adelante del navegador
+  window.addEventListener('popstate', () => {
+    const hash = window.location.hash.replace('#', '') || 'inicio';
+    if (document.getElementById(hash)) {
+      switchPage(hash);
+    }
+  });
+}
+
+/* ==============================================================================
+ * 2. CARRUSEL DE IMÁGENES REALES (PÁGINA PRINCIPAL)
+ * ============================================================================== */
+function initCarousel() {
+  const slides = document.querySelectorAll('.carousel-slide');
+  const prevBtn = document.getElementById('carousel-prev');
+  const nextBtn = document.getElementById('carousel-next');
+  const indicatorsContainer = document.getElementById('carousel-indicators');
+  const carouselContainer = document.querySelector('.carousel-container');
+
+  if (!slides.length || !indicatorsContainer) return;
+
+  let currentIndex = 0;
+  let autoplayTimer = null;
+  const slideCount = slides.length;
+
+  // Generar puntos indicadores dinámicamente
+  indicatorsContainer.innerHTML = '';
+  slides.forEach((_, idx) => {
+    const dot = document.createElement('button');
+    dot.className = `indicator-dot ${idx === 0 ? 'active' : ''}`;
+    dot.setAttribute('aria-label', `Ir a foto ${idx + 1}`);
+    dot.addEventListener('click', () => goToSlide(idx));
+    indicatorsContainer.appendChild(dot);
+  });
+
+  const dots = indicatorsContainer.querySelectorAll('.indicator-dot');
+
+  function updateSlideClasses() {
+    slides.forEach((slide, idx) => {
+      slide.classList.toggle('active-slide', idx === currentIndex);
+    });
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentIndex);
+    });
+  }
+
+  function goToSlide(index) {
+    currentIndex = (index + slideCount) % slideCount;
+    updateSlideClasses();
+    resetAutoplay();
+  }
+
+  function nextSlide() {
+    goToSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    goToSlide(currentIndex - 1);
+  }
+
+  if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+  if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+  // Autoplay cada 5 segundos
+  function startAutoplay() {
+    stopAutoplay();
+    autoplayTimer = setInterval(nextSlide, 5000);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      autoplayTimer = null;
+    }
+  }
+
+  function resetAutoplay() {
+    stopAutoplay();
+    startAutoplay();
+  }
+
+  // Pausar al pasar el ratón sobre el carrusel
+  if (carouselContainer) {
+    carouselContainer.addEventListener('mouseenter', stopAutoplay);
+    carouselContainer.addEventListener('mouseleave', startAutoplay);
+
+    // Soporte para gestos táctiles (Swipe en móviles)
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carouselContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    carouselContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleGesture();
+    }, { passive: true });
+
+    function handleGesture() {
+      const swipeDistance = touchEndX - touchStartX;
+      if (Math.abs(swipeDistance) > 40) {
+        if (swipeDistance < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    }
+  }
+
+  // Teclas de flecha izquierda/derecha
+  document.addEventListener('keydown', (e) => {
+    const inicioView = document.getElementById('inicio');
+    if (inicioView && inicioView.classList.contains('active-view')) {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    }
+  });
+
+  startAutoplay();
+}
+
+/* ==============================================================================
+ * 3. EFECTO FLOTANTE DE PÉTALOS DE CEMPASÚCHIL
+ * ============================================================================== */
+function initPetalsEffect() {
+  const container = document.getElementById('petals-container');
+  if (!container) return;
+
+  const petalCount = 12; // Cantidad óptima y ligera para gran rendimiento
+
+  for (let i = 0; i < petalCount; i++) {
+    createPetal(container);
+  }
+}
+
+function createPetal(container) {
+  const petal = document.createElement('div');
+  petal.className = 'petal';
+
+  const size = Math.random() * 12 + 10; // 10px a 22px
+  const left = Math.random() * 100; // 0% a 100% de ancho
+  const duration = Math.random() * 8 + 6; // 6s a 14s
+  const delay = Math.random() * 5; // 0s a 5s
+
+  petal.style.width = `${size}px`;
+  petal.style.height = `${size * 0.75}px`;
+  petal.style.left = `${left}%`;
+  petal.style.animationDuration = `${duration}s`;
+  petal.style.animationDelay = `${delay}s`;
+
+  container.appendChild(petal);
+}
+
+/* ==============================================================================
+ * 4. MODAL / LIGHTBOX PARA AMPLIAR IMÁGENES
+ * ============================================================================== */
+function initImageModal() {
+  const modal = document.getElementById('image-modal');
+  const modalImg = document.getElementById('modal-img');
+  const modalCaption = document.getElementById('modal-caption');
+  const modalClose = document.getElementById('modal-close');
+
+  if (!modal || !modalImg) return;
+
+  // Hacer clickeables todas las imágenes con clase inspectable
+  document.addEventListener('click', (e) => {
+    const target = e.target.closest('.inspectable-img');
+    if (target) {
+      const src = target.getAttribute('src');
+      const alt = target.getAttribute('alt') || 'Fotografía de Día de Muertos';
+      modalImg.src = src;
+      modalCaption.textContent = alt;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  if (modalClose) {
+    modalClose.addEventListener('click', closeModal);
+  }
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeModal();
+    }
+  });
+}
+
+/* ==============================================================================
+ * 5. BOTÓN FLOTANTE "VOLVER ARRIBA"
+ * ============================================================================== */
+function initScrollTop() {
+  const scrollTopBtn = document.getElementById('scroll-top-btn');
+  if (!scrollTopBtn) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 350) {
+      scrollTopBtn.classList.add('visible');
+    } else {
+      scrollTopBtn.classList.remove('visible');
+    }
+  });
+
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+/* ==============================================================================
+ * 6. AÑO DINÁMICO EN EL PIE DE PÁGINA
+ * ============================================================================== */
+function initDynamicYear() {
+  const yearElement = document.getElementById('year-span');
+  if (yearElement) {
+    const currentYear = new Date().getFullYear();
+    yearElement.textContent = currentYear;
+  }
+}
+
+/* ==============================================================================
+ * 7. SISTEMA DE BÚSQUEDA INTERACTIVA EN EL SITIO
+ * ============================================================================== */
+function initSearchSystem() {
+  const searchInput = document.getElementById('site-search-input');
+  const searchClearBtn = document.getElementById('search-clear-btn');
+  const searchActionBtn = document.getElementById('search-action-btn');
+  const searchResultsDropdown = document.getElementById('search-results-dropdown');
+  const searchContainer = document.getElementById('search-container');
+
+  if (!searchInput || !searchResultsDropdown) return;
+
+  // Catálogo detallado de contenidos indexados para la búsqueda
+  const searchData = [
+    {
+      title: 'El Origen Prehispánico y Mestizo',
+      page: 'inicio',
+      icon: '🏵️',
+      badge: 'Inicio',
+      targetSelector: '#inicio .cultural-card:nth-child(1)',
+      snippet: 'Culto a Mictecacíhuatl, el Mictlán prehispánico y la unión con Todos los Santos.',
+      keywords: ['origen', 'prehispanico', 'mestizo', 'mictlan', 'mictecacihuatl', 'historia', 'aztecas', 'mexicas', 'unesco', 'sincretismo']
+    },
+    {
+      title: '¿Cómo se Celebra en México?',
+      page: 'inicio',
+      icon: '🎺',
+      badge: 'Inicio',
+      targetSelector: '#inicio .cultural-card:nth-child(2)',
+      snippet: 'Velaciones nocturnas en panteones, música, alegría familiar y ofrendas.',
+      keywords: ['celebracion', 'como se celebra', 'velacion', 'panteones', 'cementerios', 'mariachi', 'fiesta', 'janitzio', 'mixquic', 'tumbas']
+    },
+    {
+      title: 'Galería y Carrusel de Fotografías Reales',
+      page: 'inicio',
+      icon: '📸',
+      badge: 'Inicio',
+      targetSelector: '.carousel-showcase',
+      snippet: 'Fotos reales que capturan la mística de los panteones, altares y desfiles.',
+      keywords: ['carrusel', 'fotos', 'fotografias', 'imagenes', 'galeria', 'panteon iluminado', 'desfile']
+    },
+    {
+      title: 'Niveles del Altar (2, 3 y 7 escalones)',
+      page: 'altar',
+      icon: '🪜',
+      badge: 'Altar',
+      targetSelector: '.altar-levels-overview',
+      snippet: 'Estructura ceremonial: cielo, tierra, purgatorio y los 7 pasos del Mictlán.',
+      keywords: ['niveles', 'escalones', 'altar', 'ofrenda', 'estructura', 'purgatorio', 'cielo y tierra', '7 niveles', 'escalon']
+    },
+    {
+      title: 'Velas y Veladoras',
+      page: 'altar',
+      icon: '🕯️',
+      badge: 'Altar',
+      targetSelector: '#altar .elements-grid .element-item:nth-child(1)',
+      snippet: 'La luz, fe y esperanza que ilumina el sendero para que las ánimas no se pierdan.',
+      keywords: ['velas', 'veladoras', 'luz', 'fuego', 'sendero', 'esperanza', 'cirios', 'flama']
+    },
+    {
+      title: 'Flor de Cempasúchil',
+      page: 'altar',
+      icon: '🌼',
+      badge: 'Altar',
+      targetSelector: '#altar .elements-grid .element-item:nth-child(2)',
+      snippet: 'Cempohualxochitl: aroma y color solar que marca el camino de vuelta al hogar.',
+      keywords: ['cempasuchil', 'flor', 'flores', 'cempohualxochitl', 'aroma', 'petalos', 'amarillo', 'naranja']
+    },
+    {
+      title: 'Fotografías de los Difuntos',
+      page: 'altar',
+      icon: '🖼️',
+      badge: 'Altar',
+      targetSelector: '#altar .elements-grid .element-item:nth-child(3)',
+      snippet: 'Colocadas en la cúspide para recordar y honrar el legado de los ancestros.',
+      keywords: ['fotos', 'fotografias', 'difuntos', 'antepasados', 'seres queridos', 'memoria', 'cuadro', 'retrato']
+    },
+    {
+      title: 'Papel Picado Mexicano',
+      page: 'altar',
+      icon: '🎏',
+      badge: 'Altar',
+      targetSelector: '#altar .elements-grid .element-item:nth-child(4)',
+      snippet: 'Representa el viento y la alegría festiva que anuncia la llegada de las almas.',
+      keywords: ['papel picado', 'viento', 'adorno', 'colores', 'alegria', 'mexicano', 'artesania']
+    },
+    {
+      title: 'Agua Pura y Sal',
+      page: 'altar',
+      icon: '💧',
+      badge: 'Altar',
+      targetSelector: '#altar .elements-grid .element-item:nth-child(5)',
+      snippet: 'Calma la sed del alma tras su viaje y purifica el espíritu para su retorno.',
+      keywords: ['agua', 'sal', 'sed', 'purificacion', 'vaso de agua', 'plato con sal']
+    },
+    {
+      title: 'Copal e Incienso',
+      page: 'altar',
+      icon: '💨',
+      badge: 'Altar',
+      targetSelector: '#altar .elements-grid .element-item:nth-child(6)',
+      snippet: 'Resina aromática sagrada que limpia malas energías y consagra el hogar.',
+      keywords: ['copal', 'incienso', 'humo', 'resina', 'purificar', 'sahumador', 'limpieza']
+    },
+    {
+      title: 'Significado de los Colores del Altar',
+      page: 'altar',
+      icon: '🎨',
+      badge: 'Altar',
+      targetSelector: '.colors-significance',
+      snippet: 'Naranja (luz solar), rosa mexicano (fiesta), morado (duelo) y blanco (pureza).',
+      keywords: ['colores', 'significado', 'morado', 'duelo', 'rosa mexicano', 'blanco', 'naranja cempasuchil']
+    },
+    {
+      title: 'La Catrina Mexicana',
+      page: 'catrinas',
+      icon: '🌹',
+      badge: 'Catrinas',
+      targetSelector: '#catrinas .dual-portrait-showcase .character-card:nth-child(1)',
+      snippet: 'Dama de la eternidad: maquillaje de calavera, cuencas florales y vestido de gala.',
+      keywords: ['catrina', 'catrinas', 'maquillaje', 'vestuario', 'flores', 'sombrero', 'corona', 'mujer']
+    },
+    {
+      title: 'El Catrín (El Caballero Calavera)',
+      page: 'catrinas',
+      icon: '🎩',
+      badge: 'Catrinas',
+      targetSelector: '#catrinas .dual-portrait-showcase .character-card:nth-child(2)',
+      snippet: 'Contraparte masculina elegante: frac, esmoquin, traje de charro, bastón y sombrero.',
+      keywords: ['catrin', 'catrines', 'hombre', 'traje', 'charro', 'baston', 'sombrero de copa', 'dandi']
+    },
+    {
+      title: 'Origen: José Guadalupe Posada y Diego Rivera',
+      page: 'catrinas',
+      icon: '📜',
+      badge: 'Catrinas',
+      targetSelector: '.history-origin-box',
+      snippet: 'De la Calavera Garbancera satírica al icónico mural en la Alameda Central.',
+      keywords: ['posada', 'jose guadalupe posada', 'diego rivera', 'garbancera', 'historia', 'mural', 'arte', 'satira']
+    },
+    {
+      title: 'Calaveras Tradicionales de Azúcar',
+      page: 'calaveras',
+      icon: '💀',
+      badge: 'Calaveritas',
+      targetSelector: '#calaveras .skulls-grid .skull-variety-card:nth-child(1)',
+      snippet: 'Técnica de alfeñique colonial con papel estaño en la frente para escribir el nombre.',
+      keywords: ['calaveras', 'calaveritas', 'azucar', 'alfeñique', 'estaño', 'frente', 'nombre', 'toluca', 'dulce']
+    },
+    {
+      title: 'Calaveras de Chocolate y Cacao',
+      page: 'calaveras',
+      icon: '🍫',
+      badge: 'Calaveritas',
+      targetSelector: '#calaveras .skulls-grid .skull-variety-card:nth-child(2)',
+      snippet: 'Variedad de chocolate amargo o con leche aromatizado con canela y vainilla.',
+      keywords: ['chocolate', 'cacao', 'dulce', 'calaveras de chocolate', 'oaxaca', 'tabasco']
+    },
+    {
+      title: 'Calaveras de Amaranto (Alegrías)',
+      page: 'calaveras',
+      icon: '🌾',
+      badge: 'Calaveritas',
+      targetSelector: '#calaveras .skulls-grid .skull-variety-card:nth-child(3)',
+      snippet: 'Grano sagrado mexica mezclado con miel virgen o piloncillo en moldes de calavera.',
+      keywords: ['amaranto', 'alegria', 'miel', 'piloncillo', 'tulyehualco', 'xochimilco', 'grano sagrado']
+    },
+    {
+      title: 'Pan de Muerto y su Anatomía',
+      page: 'pan',
+      icon: '🍞',
+      badge: 'Pan',
+      targetSelector: '.pan-anatomy-card',
+      snippet: 'Forma circular (ciclo vital), coronilla (cráneo) y cuatro canillas (huesos y lágrimas).',
+      keywords: ['pan', 'pan de muerto', 'anatomia', 'simbolismo', 'craneo', 'canillas', 'huesitos', 'azahar']
+    },
+    {
+      title: 'Variedades Regionales de Pan de Muerto',
+      page: 'pan',
+      icon: '🥐',
+      badge: 'Pan',
+      targetSelector: '.pan-varieties-grid',
+      snippet: 'Azúcar clásica, ajonjolí (Puebla), pan de yema con carita (Oaxaca) y golletes rosas.',
+      keywords: ['variedades', 'ajonjoli', 'puebla', 'pan de yema', 'oaxaca', 'carita', 'golletes', 'azucar rosa']
+    }
+  ];
+
+  // Normalizar texto (elimina acentos y pasa a minúsculas)
+  function normalizeText(text) {
+    return text.toString().toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
+
+  // Resaltar coincidencias en texto
+  function highlightMatches(text, query) {
+    if (!query) return text;
+    const cleanQuery = query.replace(/[.*+?^${}()|[\]\\]/g, '\\<script src="script.js"></script>');
+    const regex = new RegExp(`(${cleanQuery})`, 'gi');
+    return text.replace(regex, '<mark class="search-match-text">$1</mark>');
+  }
+
+  // Ejecutar búsqueda y mostrar resultados
+  function performSearch() {
+    const rawQuery = searchInput.value;
+    const query = normalizeText(rawQuery);
+
+    if (searchClearBtn) {
+      searchClearBtn.style.display = rawQuery.length > 0 ? 'flex' : 'none';
+    }
+
+    if (!query) {
+      searchResultsDropdown.innerHTML = '';
+      searchResultsDropdown.style.display = 'none';
+      return;
+    }
+
+    // Filtrar coincidencias
+    const results = searchData.filter(item => {
+      const titleClean = normalizeText(item.title);
+      const snippetClean = normalizeText(item.snippet);
+      const keywordsMatch = item.keywords.some(k => normalizeText(k).includes(query));
+      return titleClean.includes(query) || snippetClean.includes(query) || keywordsMatch;
+    });
+
+    if (results.length === 0) {
+      searchResultsDropdown.innerHTML = `
+        <div class="search-no-results">
+          <div class="search-no-results-icon">🔎</div>
+          <p><strong>Sin coincidencias directas para "${rawQuery}"</strong></p>
+          <p style="font-size: 0.8rem; margin-top: 0.3rem;">Prueba con: <em>Altar, Cempasúchil, Catrina, Pan, Velas, Azúcar...</em></p>
+        </div>
+      `;
+      searchResultsDropdown.style.display = 'block';
+      return;
+    }
+
+    // Renderizar resultados encontrados
+    searchResultsDropdown.innerHTML = results.map((item, index) => `
+      <div class="search-result-item" data-index="${index}" role="option" tabindex="0">
+        <span class="result-icon">${item.icon}</span>
+        <div class="result-info">
+          <div class="result-header">
+            <span class="result-title">${highlightMatches(item.title, rawQuery)}</span>
+            <span class="result-badge">${item.badge}</span>
+          </div>
+          <p class="result-snippet">${highlightMatches(item.snippet, rawQuery)}</p>
+        </div>
+      </div>
+    `).join('');
+
+    searchResultsDropdown.style.display = 'block';
+
+    // Asignar eventos de clic a cada resultado
+    const itemElements = searchResultsDropdown.querySelectorAll('.search-result-item');
+    itemElements.forEach((el, index) => {
+      el.addEventListener('click', () => {
+        selectSearchResult(results[index]);
+      });
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          selectSearchResult(results[index]);
+        }
+      });
+    });
+  }
+
+  // Navegar al elemento seleccionado
+  function selectSearchResult(item) {
+    if (!item) return;
+
+    // Cambiar de vista usando la función global
+    if (typeof window.switchPage === 'function') {
+      window.switchPage(item.page);
+    }
+
+    // Cerrar buscador
+    searchResultsDropdown.style.display = 'none';
+
+    // Desplazar suavemente hasta el elemento en la página
+    setTimeout(() => {
+      const targetElement = document.querySelector(item.targetSelector);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        targetElement.classList.add('search-target-highlight');
+        setTimeout(() => {
+          targetElement.classList.remove('search-target-highlight');
+        }, 2600);
+      }
+    }, 280);
+  }
+
+  // Eventos de entrada
+  searchInput.addEventListener('input', performSearch);
+  searchInput.addEventListener('focus', () => {
+    if (searchInput.value.trim().length > 0) {
+      performSearch();
+    }
+  });
+
+  // Botón limpiar
+  if (searchClearBtn) {
+    searchClearBtn.addEventListener('click', () => {
+      searchInput.value = '';
+      searchClearBtn.style.display = 'none';
+      searchResultsDropdown.innerHTML = '';
+      searchResultsDropdown.style.display = 'none';
+      searchInput.focus();
+    });
+  }
+
+  // Botón de acción buscar
+  if (searchActionBtn) {
+    searchActionBtn.addEventListener('click', () => {
+      const firstItem = searchResultsDropdown.querySelector('.search-result-item');
+      if (firstItem) {
+        firstItem.click();
+      } else {
+        performSearch();
+        searchInput.focus();
+      }
+    });
+  }
+
+  // Soporte de tecla Enter en el input
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const firstItem = searchResultsDropdown.querySelector('.search-result-item');
+      if (firstItem) {
+        firstItem.click();
+      }
+    } else if (e.key === 'Escape') {
+      searchResultsDropdown.style.display = 'none';
+    }
+  });
+
+  // Cerrar desplegable al hacer clic fuera del buscador
+  document.addEventListener('click', (e) => {
+    if (searchContainer && !searchContainer.contains(e.target)) {
+      searchResultsDropdown.style.display = 'none';
+    }
+  });
+}
+
+</script>
+</body>
+</html>

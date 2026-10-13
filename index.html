@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página educativa interactiva sobre el Día de Muertos en México: historia, altar, catrinas, calaveritas de dulce y pan de muerto. Universidad Bancaria de México - LIAF1001.">
+  <title>Cómo se vive el día de muertos en México | Tradición y Cultura</title>
+  
+  <!-- Tipografías de Google Fonts: Fredoka (juvenil y amigable) y Outfit (moderna y limpia) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Hoja de Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       GUIRNALDA TRADICIONAL DE PAPEL PICADO MEXICANO
+       ======================================================================== -->
+  <div class="papel-picado-banner" aria-hidden="true">
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+    <div class="papel-item"></div>
+  </div>
+
+  <!-- Contenedor para lluvia de pétalos dorados de Cempasúchil -->
+  <div id="petals-container" class="floating-petal-container" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       ENCABEZADO Y MENÚ SUPERIOR DE NAVEGACIÓN
+       ======================================================================== -->
+  <header class="main-header">
+    <nav class="nav-container" aria-label="Navegación principal">
+      <!-- LOGO ANIMADO: CRÁNEO CARICATUREZCO MAQUILLADO DE CATRINA (SIN LETRAS, PURA IMAGEN) -->
+      <a href="#inicio" id="brand-logo-btn" class="brand-link" title="Inicio - Día de Muertos en México">
+        <div class="logo-wrapper">
+          <svg class="skull-catrina-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logotipo animado de calaverita catrina sonriente con corona de flores">
+            <defs>
+              <!-- Gradiente para el rostro blanco aperlado -->
+              <radialGradient id="craniumGrad" cx="50%" cy="45%" r="50%">
+                <stop offset="0%" stop-color="#ffffff" />
+                <stop offset="85%" stop-color="#fdf5ec" />
+                <stop offset="100%" stop-color="#fae3ce" />
+              </radialGradient>
+              <!-- Gradiente flor de cempasúchil central -->
+              <radialGradient id="marigoldGrad" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ffea00" />
+                <stop offset="60%" stop-color="#ff7300" />
+                <stop offset="100%" stop-color="#e5007d" />
+              </radialGradient>
+            </defs>
+
+            <!-- Base del cráneo caricaturezco -->
+            <path d="M26,48 C22,30 35,16 50,16 C65,16 78,30 74,48 C72,56 70,62 65,65 C63,74 59,80 50,80 C41,80 37,74 35,65 C30,62 28,56 26,48 Z" fill="url(#craniumGrad)" stroke="#4e342e" stroke-width="2.5" stroke-linejoin="round" />
+
+            <!-- Mandíbula y dientes con sonrisa amigable -->
+            <path d="M42,68 L42,75 M46,67 L46,76 M50,67 L50,76 M54,67 L54,76 M58,68 L58,75" stroke="#4e342e" stroke-width="2" stroke-linecap="round" />
+            <path d="M38,71 Q50,77 62,71" fill="none" stroke="#e5007d" stroke-width="1.8" stroke-linecap="round" />
+
+            <!-- Chapitas sonrojadas de Catrina -->
+            <circle class="catrina-blush" cx="33" cy="56" r="5.5" fill="#ff70a6" opacity="0.75" />
+            <circle class="catrina-blush" cx="67" cy="56" r="5.5" fill="#ff70a6" opacity="0.75" />
+
+            <!-- Nariz en forma de corazón invertido mexicano -->
+            <path d="M50,56 C48.5,52 46,55 50,59 C54,55 51.5,52 50,56 Z" fill="#6b2d5c" />
+
+            <!-- Ojos de Catrina con pétalos circulares florales animados -->
+            <!-- Ojo Izquierdo -->
+            <g transform="translate(37,44)">
+              <g class="eye-flower">
+                <circle cx="0" cy="0" r="10" fill="#e5007d" />
+                <!-- Pétalos amarillos alrededor -->
+                <circle cx="0" cy="-10" r="2.8" fill="#ffbe0b" />
+                <circle cx="7" cy="-7" r="2.8" fill="#ff7300" />
+                <circle cx="10" cy="0" r="2.8" fill="#ffbe0b" />
+                <circle cx="7" cy="7" r="2.8" fill="#ff7300" />
+                <circle cx="0" cy="10" r="2.8" fill="#ffbe0b" />
+                <circle cx="-7" cy="7" r="2.8" fill="#ff7300" />
+                <circle cx="-10" cy="0" r="2.8" fill="#ffbe0b" />
+                <circle cx="-7" cy="-7" r="2.8" fill="#ff7300" />
+              </g>
+              <circle cx="0" cy="0" r="6.2" fill="#2d221c" />
+              <circle cx="2" cy="-2" r="2" fill="#ffffff" />
+            </g>
+
+            <!-- Ojo Derecho -->
+            <g transform="translate(63,44)">
+              <g class="eye-flower">
+                <circle cx="0" cy="0" r="10" fill="#e5007d" />
+                <!-- Pétalos amarillos alrededor -->
+                <circle cx="0" cy="-10" r="2.8" fill="#ffbe0b" />
+                <circle cx="7" cy="-7" r="2.8" fill="#ff7300" />
+                <circle cx="10" cy="0" r="2.8" fill="#ffbe0b" />
+                <circle cx="7" cy="7" r="2.8" fill="#ff7300" />
+                <circle cx="0" cy="10" r="2.8" fill="#ffbe0b" />
+                <circle cx="-7" cy="7" r="2.8" fill="#ff7300" />
+                <circle cx="-10" cy="0" r="2.8" fill="#ffbe0b" />
+                <circle cx="-7" cy="-7" r="2.8" fill="#ff7300" />
+              </g>
+              <circle cx="0" cy="0" r="6.2" fill="#2d221c" />
+              <circle cx="2" cy="-2" r="2" fill="#ffffff" />
+            </g>
+
+            <!-- Telaraña y ornamentos en la frente -->
+            <path d="M50,23 Q45,28 50,33 Q55,28 50,23 Z" fill="#0096c7" />
+            <circle cx="50" cy="28" r="1.5" fill="#ffea00" />
+
+            <!-- Corona de Flores tradicional de Catrina (Rosas y Cempasúchil) -->
+            <g class="crown-flower" transform="translate(0, -2)">
+              <!-- Hojas verdes de fondo -->
+              <ellipse cx="28" cy="19" rx="6" ry="3" fill="#06d6a0" transform="rotate(-30 28 19)" />
+              <ellipse cx="72" cy="19" rx="6" ry="3" fill="#06d6a0" transform="rotate(30 72 19)" />
+
+              <!-- Flor Izquierda: Rosa Mexicana -->
+              <circle cx="31" cy="20" r="7.5" fill="#e5007d" />
+              <circle cx="31" cy="20" r="4.5" fill="#ff4081" />
+              <circle cx="31" cy="20" r="2" fill="#ffe4f1" />
+
+              <!-- Flor Central: Cempasúchil Naranja Resplandeciente -->
+              <circle cx="50" cy="14" r="9.5" fill="url(#marigoldGrad)" />
+              <circle cx="50" cy="14" r="6" fill="#ffbe0b" />
+              <circle cx="50" cy="14" r="2.8" fill="#ff7300" />
+
+              <!-- Flor Derecha: Flor Amarilla brillante -->
+              <circle cx="69" cy="20" r="7.5" fill="#ffbe0b" />
+              <circle cx="69" cy="20" r="4.5" fill="#ff7300" />
+              <circle cx="69" cy="20" r="2" fill="#fffbe6" />
+            </g>
+          </svg>
+        </div>
+      </a>
+
+      <!-- BOTÓN MENÚ MÓVIL (HAMBURGUESA) -->
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Abrir menú de navegación" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- ENLACES DE NAVEGACIÓN REQUERIDOS (5 PÁGINAS) -->
+      <ul class="nav-links" id="nav-links" role="menubar">
+        <li class="nav-item" role="none">
+          <a href="#inicio" class="nav-btn active" data-target="inicio" role="menuitem">
+            <span class="icon" aria-hidden="true">🏠</span> Inicio
+          </a>
+        </li>
+        <li class="nav-item" role="none">
+          <a href="#altar" class="nav-btn" data-target="altar" role="menuitem">
+            <span class="icon" aria-hidden="true">🕯️</span> Altar
+          </a>
+        </li>
+        <li class="nav-item" role="none">
+          <a href="#catrinas" class="nav-btn" data-target="catrinas" role="menuitem">
+            <span class="icon" aria-hidden="true">🌹</span> Catrinas
+          </a>
+        </li>
+        <li class="nav-item" role="none">
+          <a href="#calaveras" class="nav-btn" data-target="calaveras" role="menuitem">
+            <span class="icon" aria-hidden="true">💀</span> Calaveras de azúcar
+          </a>
+        </li>
+        <li class="nav-item" role="none">
+          <a href="#pan" class="nav-btn" data-target="pan" role="menuitem">
+            <span class="icon" aria-hidden="true">🍞</span> Pan de muerto
+          </a>
+        </li>
+      </ul>
+
+      <!-- BARRA Y BOTÓN DE BÚSQUEDA INTERACTIVA -->
+      <div class="search-container" id="search-container">
+        <div class="search-bar">
+          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="site-search-input" class="search-input" placeholder="Buscar: altar, pan, catrina..." autocomplete="off" aria-label="Buscar en el sitio web">
+          <button type="button" id="search-clear-btn" class="search-clear-btn" aria-label="Limpiar búsqueda" title="Borrar">✕</button>
+          <button type="button" id="search-action-btn" class="search-action-btn" aria-label="Ejecutar búsqueda" title="Buscar">
+            <span>Buscar</span>
+          </button>
+        </div>
+        <!-- MENÚ DE RESULTADOS DESPLEGABLES -->
+        <div id="search-results-dropdown" class="search-results-dropdown" role="listbox" aria-label="Resultados de búsqueda"></div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================================================
+       CONTENIDO PRINCIPAL: 5 PÁGINAS / VISTAS EDUCATIVAS
+       ======================================================================== -->
+  <main class="main-content">
+
+    <!-- --------------------------------------------------------------------
+         PÁGINA 1: INICIO (PRINCIPAL)
+         -------------------------------------------------------------------- -->
+    <section id="inicio" class="page-view active-view" aria-labelledby="hero-title">
+      <div class="section-hero">
+        <div class="badge-festivo">
+          <span>✨ Patrimonio Cultural Inmaterial de la Humanidad (UNESCO)</span>
+        </div>
+        <h1 id="hero-title" class="main-title">
+          Cómo se vive el <span class="title-highlight">día de muertos</span> en México
+        </h1>
+        <p class="section-subtitle">
+          Una fiesta ancestral donde el amor, la memoria y el color trascienden la frontera entre la vida y la muerte para recibir con brazos abiertos las almas de nuestros seres queridos.
+        </p>
+
+        <div class="cempasuchil-divider">
+          <span class="flower-icon" aria-hidden="true">🌼</span>
+        </div>
+      </div>
+
+      <!-- INTRODUCCIÓN CULTURAL EDUCATIVA -->
+      <div class="intro-grid">
+        <article class="cultural-card">
+          <div class="card-icon-pill" aria-hidden="true">🏵️</div>
+          <h2 class="card-title">El Origen Prehispánico y Mestizo</h2>
+          <p class="card-text">
+            Las raíces del Día de Muertos se remontan a las grandes civilizaciones mesoamericanas como la mexica, maya, purépecha y totonaca. Para nuestros antepasados, la muerte no representaba un final temible ni un castigo divino, sino una etapa natural de transformación dentro del ciclo cósmico. Rendían culto a <strong>Mictecacíhuatl</strong>, la "Dama de la Muerte" y guardiana del <em>Mictlán</em> (el inframundo de nueve niveles).
+          </p>
+          <p class="card-text" style="margin-top: 0.8rem;">
+            Con la llegada española en el siglo XVI, estas solemnes ceremonias indígenas convergieron en un vibrante sincretismo con las festividades católicas del Día de Todos los Santos (1 de noviembre) y de los Fieles Difuntos (2 de noviembre), naciendo la celebración más representativa de la identidad mexicana.
+          </p>
+        </article>
+
+        <article class="cultural-card pink-accent">
+          <div class="card-icon-pill" aria-hidden="true">🎺</div>
+          <h2 class="card-title">¿Cómo se Celebra en México?</h2>
+          <p class="card-text">
+            En México no se llora con desesperanza: <strong>se recuerda con fiesta, música y cariño</strong>. Las familias mexicanas transforman sus hogares y panteones en templos de luz y perfume. Se limpian y decoran las tumbas con senderos dorados de pétalos de cempasúchil para guiar a las almas desde el más allá hasta el mundo de los vivos.
+          </p>
+          <p class="card-text" style="margin-top: 0.8rem;">
+            Durante la noche del 1 al 2 de noviembre se realiza la tradicional <em>velación</em>: familias enteras comparten anécdotas, cantan con mariachi o tríos huastecos, beben chocolate caliente y degustan los platillos preferidos que en vida disfrutaron sus difuntos, reafirmando que nadie muere verdaderamente mientras permanezca en nuestra memoria.
+          </p>
+        </article>
+
+        <article class="cultural-card yellow-accent">
+          <div class="card-icon-pill" aria-hidden="true">🇲🇽</div>
+          <h2 class="card-title">Una Tradición Viva y Universitaria</h2>
+          <p class="card-text">
+            Desde los místicos lagos de Pátzcuaro y Janitzio en Michoacán, pasando por el solemne misticismo de San Andrés Mixquic en la Ciudad de México, hasta las fastuosas comparsas de Oaxaca y las Huastecas (Xantolo); la juventud mexicana mantiene viva esta herencia cultural creando ofrendas monumentales, concursos de catrinas y expresiones artísticas de gran orgullo nacional.
+          </p>
+        </article>
+      </div>
+
+      <!-- CARRUSEL DE IMÁGENES REALES SOBRE EL DÍA DE MUERTOS -->
+      <section class="carousel-showcase" aria-label="Galería interactiva de imágenes reales de Día de Muertos">
+        <div class="carousel-header">
+          <h3>Galería Visual: El Esplendor del Día de Muertos en México</h3>
+          <p>Fotografías reales que capturan la mística de los panteones, las ofrendas y el arte popular</p>
+        </div>
+
+        <div class="carousel-container" tabindex="0" aria-roledescription="carrusel">
+          <div class="carousel-track">
+            <!-- Slide 1: Altar Tradicional Mexicano -->
+            <div class="carousel-slide active-slide">
+              <img src="https://images.unsplash.com/photo-1572537165377-627a37043464?auto=format&fit=crop&w=1200&q=80" 
+                   alt="Altar de muertos mexicano con flores de cempasúchil, veladoras y papel picado tradicional" 
+                   class="inspectable-img" loading="lazy">
+              <div class="slide-caption-overlay">
+                <span class="slide-tag">Tradición Ancestral</span>
+                <h4 class="slide-title">El Altar Familiar: Hogar de Reencuentro</h4>
+                <p class="slide-desc">Colores vivos, aroma a copal e incienso y veladoras encendidas para recibir con calidez las almas de nuestros seres queridos.</p>
+              </div>
+            </div>
+
+            <!-- Slide 2: Panteón y Velación Nocturna -->
+            <div class="carousel-slide">
+              <img src="https://images.unsplash.com/photo-1604076913837-52ab5629fba9?auto=format&fit=crop&w=1200&q=80" 
+                   alt="Velación nocturna en cementerio mexicano iluminado con cientos de velas y flores de cempasúchil" 
+                   class="inspectable-img" loading="lazy">
+              <div class="slide-caption-overlay">
+                <span class="slide-tag">Misticismo y Luz</span>
+                <h4 class="slide-title">La Velación en los Panteones</h4>
+                <p class="slide-desc">En sitios emblemáticos como Janitzio y Mixquic, la noche se vuelve día gracias al resplandor dorado de miles de cirios encendidos sobre las tumbas.</p>
+              </div>
+            </div>
+
+            <!-- Slide 3: Catrinas y Desfile Cultural -->
+            <div class="carousel-slide">
+              <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1200&q=80" 
+                   alt="Retrato de una mujer caracterizada con maquillaje artístico de Catrina y corona de flores" 
+                   class="inspectable-img" loading="lazy">
+              <div class="slide-caption-overlay">
+                <span class="slide-tag">Arte y Caracterización</span>
+                <h4 class="slide-title">Elegancia de las Catrinas</h4>
+                <p class="slide-desc">El arte del maquillaje facial y los trajes de época plasman la visión inmortalizada por José Guadalupe Posada y Diego Rivera.</p>
+              </div>
+            </div>
+
+            <!-- Slide 4: Campos Dorados de Cempasúchil -->
+            <div class="carousel-slide">
+              <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=80" 
+                   alt="Campos de flor de cempasúchil color naranja brillante listos para la cosecha de día de muertos" 
+                   class="inspectable-img" loading="lazy">
+              <div class="slide-caption-overlay">
+                <span class="slide-tag">Naturaleza Sagrada</span>
+                <h4 class="slide-title">La Flor de Cempasúchil: Sendero de Luz</h4>
+                <p class="slide-desc">La flor de las veinte flores (Cempohualxochitl) cuyo intenso aroma y color solar marcan el camino de regreso al hogar terrenal.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botones de Navegación del Carrusel -->
+          <button class="carousel-btn prev" id="carousel-prev" aria-label="Imagen anterior">❮</button>
+          <button class="carousel-btn next" id="carousel-next" aria-label="Siguiente imagen">❯</button>
+
+          <!-- Indicadores de Posición -->
+          <div class="carousel-indicators" id="carousel-indicators"></div>
+        </div>
+      </section>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         PÁGINA 2: ALTAR DE DÍA DE MUERTOS
+         -------------------------------------------------------------------- -->
+    <section id="altar" class="page-view" aria-labelledby="altar-title">
+      <div class="section-hero">
+        <div class="badge-festivo">
+          <span>🕯️ Espacio Sagrado de Bienvenida</span>
+        </div>
+        <h2 id="altar-title" class="main-title">
+          El Sagrado <span class="title-highlight">Altar de Muertos</span>
+        </h2>
+        <p class="section-subtitle">
+          El altar u ofrenda es un puente espiritual que une dos mundos. Cada nivel, color y objeto colocado posee un significado cosmológico y afectivo imprescindible para el banquete de las ánimas.
+        </p>
+        <div class="cempasuchil-divider">
+          <span class="flower-icon" aria-hidden="true">🌼</span>
+        </div>
+      </div>
+
+      <!-- LOS NIVELES DEL ALTAR -->
+      <div class="altar-levels-overview">
+        <h3 style="font-family: 'Fredoka', sans-serif; font-size: 1.7rem; color: var(--cafe-tierra); text-align: center;">
+          Estructura y Niveles Tradicionales de la Ofrenda
+        </h3>
+        <p style="text-align: center; color: var(--text-muted); max-width: 750px; margin: 0.5rem auto 0;">
+          Dependiendo de la tradición regional, los altares pueden construirse de 2, 3 o 7 escalones:
+        </p>
+
+        <div class="levels-grid">
+          <div class="level-card">
+            <div class="level-number">2</div>
+            <h4 class="level-name">Niveles (Cielo y Tierra)</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Representa la división más elemental: el mundo material de los vivos en la base y el plano celestial o espiritual en la parte superior.
+            </p>
+          </div>
+
+          <div class="level-card">
+            <div class="level-number">3</div>
+            <h4 class="level-name">Niveles (Cielo, Tierra y Purgatorio)</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              En la cosmogonía mestiza simboliza el cielo, la tierra y el purgatorio católico; o bien la infancia, la madurez y la vejez del ser humano.
+            </p>
+          </div>
+
+          <div class="level-card">
+            <div class="level-number">7</div>
+            <h4 class="level-name">Niveles (El Altar Completo)</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Es el altar más tradicional y ceremonial. Representa los siete escalones que el alma debe cruzar para librar los peligros del inframundo y alcanzar el descanso eterno en el Mictlán o en el Paraíso.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ELEMENTOS IMPRESCINDIBLES DEL ALTAR CON IMÁGENES -->
+      <h3 class="elements-section-title">Elementos Indispensables y su Simbolismo</h3>
+
+      <div class="elements-grid">
+        <!-- Velas y Veladoras -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1604076913837-52ab5629fba9?auto=format&fit=crop&w=700&q=80" 
+                 alt="Velas y veladoras encendidas en el altar de día de muertos" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Fuego</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">🕯️ Velas y Veladoras</h4>
+            <p class="element-desc">
+              Representan la <strong>luz, la fe y la esperanza</strong>. Su flama cálida es la guía que alumbra el sendero para que las ánimas no se desvíen en la oscuridad y encuentren el camino de regreso a su hogar de antaño.
+            </p>
+          </div>
+        </article>
+
+        <!-- Flor de Cempasúchil -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=700&q=80" 
+                 alt="Pétalos de flor de cempasúchil formando un sendero aromático" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Tierra / Naturaleza</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">🌼 Flor de Cempasúchil</h4>
+            <p class="element-desc">
+              Del náhuatl <em>Cempohualxochitl</em> ("veinte flores"). Su amarillo solar y su penetrante fragancia crean una huella visual y olfativa que las almas pueden percibir fácilmente desde el Mictlán.
+            </p>
+          </div>
+        </article>
+
+        <!-- Fotografías de los Difuntos -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1572537165377-627a37043464?auto=format&fit=crop&w=700&q=80" 
+                 alt="Fotografías familiares enmarcadas en la cúspide del altar de muertos" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Memoria</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">🖼️ Fotografías de los Difuntos</h4>
+            <p class="element-desc">
+              Se colocan en el nivel superior de la ofrenda. Recuerdan a quién está dedicado el altar y simbolizan que nuestros antepasados continúan vivos en el corazón y la memoria de las nuevas generaciones.
+            </p>
+          </div>
+        </article>
+
+        <!-- Papel Picado -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=700&q=80" 
+                 alt="Papel picado de colores vivos ondeando al viento" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Viento</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">🎏 Papel Picado</h4>
+            <p class="element-desc">
+              Representa el <strong>elemento viento</strong>. Su movimiento suave avisa la llegada de los espíritus a la habitación, y sus vibrantes colores impregnan el luto de alegría festiva.
+            </p>
+          </div>
+        </article>
+
+        <!-- Agua y Sal -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?auto=format&fit=crop&w=700&q=80" 
+                 alt="Vasos de agua pura y platos con sal colocados en la ofrenda" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Agua y Purificación</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">💧 Agua Pura y Sal</h4>
+            <p class="element-desc">
+              El <strong>vaso de agua</strong> mitiga la sed del alma tras su largo recorrido por el inframundo. La <strong>sal</strong> es el elemento purificador que evita que el cuerpo del difunto se corrompa en su trayecto de ida y vuelta.
+            </p>
+          </div>
+        </article>
+
+        <!-- Copal e Incienso -->
+        <article class="element-item">
+          <div class="element-thumb-wrapper">
+            <img src="https://images.unsplash.com/photo-1572293007244-8b60335d2b7d?auto=format&fit=crop&w=700&q=80" 
+                 alt="Sahumador con humo de copal purificando el ambiente del altar" 
+                 class="inspectable-img" loading="lazy">
+            <span class="element-category">Espíritu</span>
+          </div>
+          <div class="element-body">
+            <h4 class="element-title">💨 Copal e Incienso</h4>
+            <p class="element-desc">
+              Resina sagrada que limpia el lugar de malos espíritus y malas energías, consagrando el hogar para que las ánimas queridas puedan ingresar con absoluta paz y serenidad.
+            </p>
+          </div>
+        </article>
+      </div>
+
+      <!-- IMPORTANCIA DE LOS COLORES EN EL ALTAR -->
+      <section class="colors-significance">
+        <h3 style="font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--cafe-tierra); text-align: center;">
+          El Significado de los Colores Tradicionales
+        </h3>
+        <p style="text-align: center; color: var(--text-muted); max-width: 800px; margin: 0.6rem auto 0;">
+          Los tonos del altar no son simples adornos; constituyen un lenguaje sagrado y cromático de profundo valor espiritual:
+        </p>
+
+        <div class="color-pills-grid">
+          <div class="color-pill-card" style="background: #fff5eb; border: 1px solid #ffd8bf;">
+            <div class="color-sample" style="background: var(--cempasuchil);"></div>
+            <h4>Naranja Cempasúchil</h4>
+            <p>La luz del sol que bendice la tierra e ilumina el camino entre ambos mundos.</p>
+          </div>
+
+          <div class="color-pill-card" style="background: #fdf5f9; border: 1px solid #ffd1e8;">
+            <div class="color-sample" style="background: var(--rosa-mexicano);"></div>
+            <h4>Rosa Mexicano</h4>
+            <p>La alegría desbordante de la fiesta y la celebración vibrante de la vida compartida.</p>
+          </div>
+
+          <div class="color-pill-card" style="background: #fcf9ff; border: 1px solid #e9d5f7;">
+            <div class="color-sample" style="background: var(--morado-mictlan);"></div>
+            <h4>Morado y Púrpura</h4>
+            <p>El color ceremonial del duelo católico, el respeto y la solemnidad ante la pérdida.</p>
+          </div>
+
+          <div class="color-pill-card" style="background: #f7fcff; border: 1px solid #d0efff;">
+            <div class="color-sample" style="background: #ffffff; border: 2px solid #ccc;"></div>
+            <h4>Blanco Puro</h4>
+            <p>La pureza del alma, la inocencia de los niños difuntos (angelitos) y la redención.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         PÁGINA 3: CATRINAS Y CATRINES
+         -------------------------------------------------------------------- -->
+    <section id="catrinas" class="page-view" aria-labelledby="catrinas-title">
+      <div class="section-hero">
+        <div class="badge-festivo">
+          <span>🎭 Ícono de Elegancia y Sátira Nacional</span>
+        </div>
+        <h2 id="catrinas-title" class="main-title">
+          El Arte de las <span class="title-highlight">Catrinas y Catrines</span>
+        </h2>
+        <p class="section-subtitle">
+          De una crítica mordaz contra el esnobismo de la época porfiriana hasta el símbolo internacional más amado de la estética y la cultura mexicana.
+        </p>
+        <div class="cempasuchil-divider">
+          <span class="flower-icon" aria-hidden="true">🌼</span>
+        </div>
+      </div>
+
+      <!-- COMPARATIVA VISUAL: LA CATRINA Y EL CATRÍN -->
+      <div class="dual-portrait-showcase">
+        <!-- Tarjeta de La Catrina -->
+        <article class="character-card">
+          <div class="character-img-box">
+            <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80" 
+                 alt="Mujer con atuendo tradicional y maquillaje de La Catrina con diadema de flores de cempasúchil" 
+                 class="inspectable-img" loading="lazy">
+            <div class="character-badge">La Dama de la Eternidad</div>
+          </div>
+          <div class="character-info">
+            <h3>La Catrina Mexicana</h3>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+              Representa la belleza majestuosa que desafía la mortalidad. Su rostro calavérico está adornado con un elaborado maquillaje de detalles florales, pedrería brillante y labios con costuras sutiles.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Maquillaje:</strong> Base blanca impoluta, cuencas oculares enmarcadas por pétalos en tonos rosa y naranja, y arabescos en la frente y barbilla.</li>
+              <li><strong>Vestuario:</strong> Vestidos victorianos de alta costura o trajes típicos bordados (como los de tehuana o charra), mantillas de encaje negro y abanicos emplumados.</li>
+              <li><strong>Tocado:</strong> Fastuosos sombreros de ala ancha con plumas de avestruz o coronas rebosantes de flores de cempasúchil y rosas rojas.</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Tarjeta de El Catrín -->
+        <article class="character-card catrin-theme">
+          <div class="character-img-box">
+            <img src="https://images.unsplash.com/photo-1572293007244-8b60335d2b7d?auto=format&fit=crop&w=800&q=80" 
+                 alt="Hombre vestido elegantemente como El Catrín con traje formal y sombrero de copa" 
+                 class="inspectable-img" loading="lazy">
+            <div class="character-badge">El Caballero Calavera</div>
+          </div>
+          <div class="character-info">
+            <h3>El Catrín</h3>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+              La contraparte masculina que encarna al dandi o caballero de la alta sociedad. Con porte gallardo y porte refinado, acompaña a la Catrina en desfiles y verbenas populares.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Maquillaje:</strong> Calavera estilizada con bigote refinado pintado en negro, sombras oscuras en los pómulos y detalles barrocos en las sienes.</li>
+              <li><strong>Vestuario:</strong> Frac, esmoquin negro, chaleco de terciopelo, corbatín de seda, o el imponente traje de charro de gala con botonadura de plata.</li>
+              <li><strong>Accesorios:</strong> Elegante sombrero de copa alta (bombín), bastón con empuñadura plateada tallada y flor de cempasúchil en la solapa.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <!-- HISTORIA Y ORIGEN: JOSÉ GUADALUPE POSADA Y DIEGO RIVERA -->
+      <section class="history-origin-box">
+        <div class="history-text">
+          <span class="badge-festivo">📜 Raíces Históricas</span>
+          <h3>De "Calavera Garbancera" a "La Catrina"</h3>
+          <p style="color: var(--text-muted); margin-bottom: 1rem; line-height: 1.7;">
+            El genial grabador hidrocálido <strong>José Guadalupe Posada</strong> creó en 1912 a la <em>"Calavera Garbancera"</em>. Su obra era una aguda crítica social hacia las personas de sangre indígena que vendían garbanzo y fingían ser aristócratas europeos, renegando de sus raíces mexicanas:
+          </p>
+          <blockquote style="font-style: italic; color: var(--cafe-tierra); border-left: 3px solid var(--rosa-mexicano); padding-left: 1rem; margin-bottom: 1rem;">
+            "La muerte es democrática, ya que a fin de cuentas, güera, morena, rica o pobre, toda la gente acaba siendo calavera."
+          </blockquote>
+          <p style="color: var(--text-muted); line-height: 1.7;">
+            Años más tarde, en 1947, el pintor <strong>Diego Rivera</strong> inmortalizó a este personaje en su monumental mural <em>"Sueño de una tarde dominical en la Alameda Central"</em>. Rivera le dibujó por primera vez su cuerpo entero, la vistió con un distinguido atuendo aristocrático con boa de plumas y la bautizó definitivamente como <strong>"La Catrina"</strong>.
+          </p>
+        </div>
+
+        <div class="makeup-guide-box">
+          <h4 style="font-family: 'Fredoka', sans-serif; font-size: 1.4rem; color: var(--cafe-tierra); margin-bottom: 1rem;">
+            Claves del Maquillaje Actual
+          </h4>
+          <div class="makeup-steps-grid">
+            <div class="makeup-step-card">
+              <h4>1. Lienzo Blanco</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Pintura aquacolor o base blanca mate sellada con polvo traslúcido para imitar el hueso.</p>
+            </div>
+            <div class="makeup-step-card">
+              <h4>2. Cuencas Florales</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Círculos en negro, rosa mexicano o morado, contorneados con pétalos y perlas adhesivas.</p>
+            </div>
+            <div class="makeup-step-card">
+              <h4>3. Sonrisa Eterna</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Líneas transversales en los labios simulando los dientes del cráneo con toque coqueto.</p>
+            </div>
+            <div class="makeup-step-card">
+              <h4>4. Resplandor Dorado</h4>
+              <p style="font-size: 0.9rem; color: var(--text-muted);">Detalles en escarcha, lentejuelas y pigmentos dorados en honor a la flor de cempasúchil.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         PÁGINA 4: CALAVERAS DE AZÚCAR Y CHOCOLATE
+         -------------------------------------------------------------------- -->
+    <section id="calaveras" class="page-view" aria-labelledby="calaveras-title">
+      <div class="section-hero">
+        <div class="badge-festivo">
+          <span>🍬 La Muerte más Dulce del Mundo</span>
+        </div>
+        <h2 id="calaveras-title" class="main-title">
+          Calaveras de <span class="title-highlight">Azúcar y Chocolate</span>
+        </h2>
+        <p class="section-subtitle">
+          Piezas maestras de la confitería tradicional mexicana que nos recuerdan que la muerte también puede saborearse con alegría y dulzura.
+        </p>
+        <div class="cempasuchil-divider">
+          <span class="flower-icon" aria-hidden="true">🌼</span>
+        </div>
+      </div>
+
+      <!-- ORIGEN Y SIGNIFICADO DEL ALFEÑIQUE -->
+      <article class="skulls-origin-banner">
+        <div>
+          <h3 style="font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--cafe-tierra); margin-bottom: 0.8rem;">
+            Del Tzompantli prehispánico al Alfeñique Colonial
+          </h3>
+          <p style="color: var(--text-muted); line-height: 1.7;">
+            En tiempos prehispánicos, los mexicas conservaban cráneos reales en empalizadas sagradas conocidas como <strong>Tzompantli</strong> como tributo y ofrenda a sus dioses para agradecer el ciclo vital del universo.
+          </p>
+          <p style="color: var(--text-muted); line-height: 1.7; margin-top: 0.8rem;">
+            Tras la Conquista, los frailes evangelizadores prohibieron los ritos con cráneos verdaderos. Los hábiles artesanos indígenas adaptaron entonces la técnica árabe-española del <strong>alfeñique</strong> (pasta de azúcar de caña pura moldeable) creando calaveritas comestibles decoradas con llamativos colores vegetales, lentejuelas y grecas de azúcar glasé.
+          </p>
+        </div>
+      </article>
+
+      <!-- VARIEDADES: AZÚCAR VS CHOCOLATE VS AMARANTO -->
+      <div class="skulls-grid">
+        <!-- Calavera de Azúcar Clásica -->
+        <article class="skull-variety-card">
+          <div class="skull-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1604176354204-9268737828e4?auto=format&fit=crop&w=700&q=80" 
+                 alt="Calaveras tradicionales de azúcar blanco adornadas con glasé de colores vivos y papel estaño" 
+                 class="inspectable-img" loading="lazy">
+          </div>
+          <div class="skull-content">
+            <h3>Calaveras Tradicionales de Azúcar</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+              Elaboradas artesanalmente mediante moldes de barro o yeso con azúcar refinada hervida a punto de bola. Su rasgo más distintivo es el <strong>papel estaño brillante en la frente</strong>, donde se escribe con tinta el nombre del difunto homenajeado o, en una pícara muestra de afecto, el nombre de un amigo vivo para recordarle con cariño su condición mortal.
+            </p>
+            <span style="font-size: 0.88rem; font-weight: 700; color: var(--cempasuchil-deep);">
+              📍 Toluca, Estado de México (Feria del Alfeñique)
+            </span>
+          </div>
+        </article>
+
+        <!-- Calaveras de Chocolate -->
+        <article class="skull-variety-card">
+          <div class="skull-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=700&q=80" 
+                 alt="Calaveritas artesanales de chocolate oscuro y chocolate con leche decoradas con confitería festiva" 
+                 class="inspectable-img" loading="lazy">
+          </div>
+          <div class="skull-content">
+            <h3>Calaveras de Chocolate y Cacao</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+              Una deliciosa evolución preferida por las nuevas generaciones. Hechas a base de rico chocolate amargo, semiamargo o blanco mexicano mezclado con canela y vainilla. Al colocarse en el altar, simbolizan la calidez del hogar y el deleite gastronómico que espera a las almas golosas de los infantes y adultos.
+            </p>
+            <span style="font-size: 0.88rem; font-weight: 700; color: var(--rosa-mexicano);">
+              🍫 Tradición chocolatera de Oaxaca y Tabasco
+            </span>
+          </div>
+        </article>
+
+        <!-- Calaveras de Amaranto -->
+        <article class="skull-variety-card">
+          <div class="skull-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1572537165377-627a37043464?auto=format&fit=crop&w=700&q=80" 
+                 alt="Calaveritas de amaranto con miel y pasas, dulce ancestral mexicano" 
+                 class="inspectable-img" loading="lazy">
+          </div>
+          <div class="skull-content">
+            <h3>Calaveras de Amaranto (Alegrías)</h3>
+            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+              Confeccionadas con semillas de amaranto (<em>huautli</em>) tostadas y aglutinadas con miel virgen o piloncillo derretido. El amaranto era considerado por los mexicas un grano sagrado e inmortal de alto valor ritual, por lo que estas calaveritas encierran una milenaria conexión espiritual.
+            </p>
+            <span style="font-size: 0.88rem; font-weight: 700; color: var(--amarillo-cempasuchil);">
+              🌾 Tradición ancestral de Tulyehualco, Xochimilco
+            </span>
+          </div>
+        </article>
+      </div>
+
+      <div class="sweet-tradition-quote">
+        <blockquote>
+          "En México la muerte no solo se festeja y se canta: también se degusta con el dulzor del azúcar, el aroma del cacao y la bendición del maíz."
+        </blockquote>
+        <p style="color: var(--text-light); font-weight: 600;">— Tradición Popular Mexicana</p>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------
+         PÁGINA 5: PAN DE MUERTO
+         -------------------------------------------------------------------- -->
+    <section id="pan" class="page-view" aria-labelledby="pan-title">
+      <div class="section-hero">
+        <div class="badge-festivo">
+          <span>🍞 Sabor a Memoria y Azahar</span>
+        </div>
+        <h2 id="pan-title" class="main-title">
+          El Inconfundible <span class="title-highlight">Pan de Muerto</span>
+        </h2>
+        <p class="section-subtitle">
+          Una joya culinaria de la panadería artesanal mexicana cuyo esponjoso bocado aromático a flores de azahar es el corazón gastronómico del altar.
+        </p>
+        <div class="cempasuchil-divider">
+          <span class="flower-icon" aria-hidden="true">🌼</span>
+        </div>
+      </div>
+
+      <!-- ANATOMÍA Y SIMBOLISMO DEL PAN DE MUERTO TRADICIONAL -->
+      <article class="pan-anatomy-card">
+        <h3 style="font-family: 'Fredoka', sans-serif; font-size: 1.8rem; color: var(--cafe-tierra); text-align: center;">
+          Anatomía y Simbolismo Oculto del Pan
+        </h3>
+        <p style="text-align: center; color: var(--text-muted); max-width: 750px; margin: 0.5rem auto 0;">
+          Cada curvatura, relieve y espolvoreado de azúcar sobre el pan tradicional guarda un significado profundo:
+        </p>
+
+        <div class="anatomy-grid">
+          <div class="anatomy-part">
+            <h4>Forma Circular</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Simboliza el ciclo continuo e interminable de la vida y de la muerte, donde no existe principio ni fin, sino un constante renacer cósmico.
+            </p>
+          </div>
+
+          <div class="anatomy-part">
+            <h4>La Coronilla / Esfera Superior</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              La bolita en la parte más alta representa el <strong>cráneo humano</strong> o la cabeza del difunto a quien se dedica el banquete.
+            </p>
+          </div>
+
+          <div class="anatomy-part">
+            <h4>Las Canillas o Huesitos Cruzados</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Las cuatro tiras en relieve representan los <strong>huesos de las extremidades</strong> y las lágrimas derramadas por los ausentes. También señalan los 4 puntos cardinales dedicados a Quetzalcóatl, Tezcatlipoca, Tláloc y Xipe Tótec.
+            </p>
+          </div>
+
+          <div class="anatomy-part">
+            <h4>El Aroma a Azahar y Naranja</h4>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              La esencia de flor de azahar perfuma la masa en memoria de los seres queridos y evoca la belleza del campo mexicano para guiar el camino de las almas.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <!-- VARIEDADES REGIONALES DE PAN DE MUERTO EN MÉXICO -->
+      <h3 style="font-family: 'Fredoka', sans-serif; font-size: 2rem; color: var(--cafe-tierra); text-align: center; margin-bottom: 2rem;">
+        Variedades Regionales de Pan de Muerto
+      </h3>
+
+      <div class="pan-varieties-grid">
+        <!-- 1. Clásico con Azúcar -->
+        <article class="pan-card">
+          <div class="pan-photo">
+            <img src="https://images.unsplash.com/photo-1604085572504-a392ddf0d86a?auto=format&fit=crop&w=700&q=80" 
+                 alt="Pan de muerto tradicional con azúcar blanca y canillas espolvoreadas" 
+                 class="inspectable-img" loading="lazy">
+            <span class="pan-region-tag">Centro de México</span>
+          </div>
+          <div class="pan-body">
+            <h3>Pan Tradicional de Azúcar</h3>
+            <p>
+              El más popular y extendido en la Ciudad de México y alrededores. Masa tipo brioche perfumada con naranja y azahar, barnizada generosamente con mantequilla derretida y cubierta de azúcar blanca crujiente.
+            </p>
+          </div>
+        </article>
+
+        <!-- 2. Con Ajonjolí -->
+        <article class="pan-card">
+          <div class="pan-photo">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80" 
+                 alt="Pan de muerto barnizado con huevo y espolvoreado con semillas de ajonjolí tostado" 
+                 class="inspectable-img" loading="lazy">
+            <span class="pan-region-tag">Puebla y Tlaxcala</span>
+          </div>
+          <div class="pan-body">
+            <h3>Pan Barnizado con Ajonjolí</h3>
+            <p>
+              En lugar de azúcar, se pincela con yema de huevo y se espolvorea con semillas de ajonjolí tostado. Posee un sabor sutilmente salado o agridulce, ideal para acompañar el mole poblano en la ofrenda.
+            </p>
+          </div>
+        </article>
+
+        <!-- 3. Pan de Yema Oaxaqueño -->
+        <article class="pan-card">
+          <div class="pan-photo">
+            <img src="https://images.unsplash.com/photo-1572537165377-627a37043464?auto=format&fit=crop&w=700&q=80" 
+                 alt="Pan de yema oaxaqueño con carita de alfeñique incrustada" 
+                 class="inspectable-img" loading="lazy">
+            <span class="pan-region-tag">Oaxaca</span>
+          </div>
+          <div class="pan-body">
+            <h3>Pan de Yema con Carita</h3>
+            <p>
+              Típico de los Valles Centrales de Oaxaca. Su masa densa y esponjosa lleva abundante yema de huevo y anís, y en un extremo se le incrusta una hermosa pequeña cabeza humana modelada en alfeñique que representa al difunto.
+            </p>
+          </div>
+        </article>
+
+        <!-- 4. Golletes y Roscas con Azúcar Rosa -->
+        <article class="pan-card">
+          <div class="pan-photo">
+            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=700&q=80" 
+                 alt="Golletes y panes de muerto tradicionales con azúcar de color rosa mexicano brillante" 
+                 class="inspectable-img" loading="lazy">
+            <span class="pan-region-tag">Mixquic y Edomex</span>
+          </div>
+          <div class="pan-body">
+            <h3>Golletes y Azúcar Rosa</h3>
+            <p>
+              Rosquillas duras y crujientes espolvoreadas con azúcar teñida de rosa mexicano intenso. En las ofrendas se sostienen mediante cañas de azúcar, evocando los antiguos sacrificios rituales.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       MODAL LIGHTBOX PARA INSPECCIONAR IMÁGENES
+       ======================================================================== -->
+  <div id="image-modal" class="image-modal" role="dialog" aria-modal="true" aria-label="Visualizador de fotografía a pantalla completa">
+    <div class="modal-content-wrap">
+      <button id="modal-close" class="modal-close-btn" aria-label="Cerrar vista">&times;</button>
+      <img id="modal-img" src="" alt="">
+      <p id="modal-caption" class="modal-caption"></p>
+    </div>
+  </div>
+
+  <!-- BOTÓN FLOTANTE "VOLVER ARRIBA" -->
+  <button id="scroll-top-btn" class="scroll-top-btn" aria-label="Volver arriba">↑</button>
+
+  <!-- ========================================================================
+       PIE DE PÁGINA (FOOTER) - REQUISITOS INSTITUCIONALES Y SOCIALES
+       ======================================================================== -->
+  <footer class="main-footer">
+    <div class="footer-papel-border" aria-hidden="true"></div>
+
+    <div class="footer-content">
+      <div class="footer-top">
+        <!-- IDENTIFICACIÓN INSTITUCIONAL -->
+        <div class="footer-university-badge">
+          <span>🏛️ Proyecto Académico Educativo</span>
+        </div>
+        <h2 class="footer-university-title">UNIVERSIDAD BANCARIA DE MÉXICO</h2>
+        
+        <!-- CÓDIGO DE GRUPO SOLICITADO -->
+        <div>
+          <span class="group-tag">LIAF1001</span>
+        </div>
+
+        <!-- LOGOS DE REDES SOCIALES: INSTAGRAM Y FACEBOOK (SVG PURO) -->
+        <div class="footer-social-section">
+          <span class="social-title">Síguenos en Redes Sociales</span>
+          <div class="social-links">
+            <!-- Logo de Facebook -->
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn facebook" aria-label="Visitar Facebook de la Universidad">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+
+            <!-- Logo de Instagram -->
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn instagram" aria-label="Visitar Instagram de la Universidad">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+
+            <!-- Logo de X (antes Twitter) -->
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn x-twitter" aria-label="Visitar X (Twitter) de la Universidad">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARTE INFERIOR: AÑO CREADO Y CRÉDITOS -->
+      <div class="footer-bottom">
+        <p>Tradición Mexicana Viva • Educación Cultural y Artística</p>
+        <p>Año de creación: <span id="year-span" class="created-year">2026</span> • Todos los derechos reservados</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Interactivo -->
+  <script src="script.js"></script>
+</body>
+</html>
